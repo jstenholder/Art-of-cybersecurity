@@ -1,6 +1,6 @@
 import pygame, sys
 from button import Button
-from settings import WIDTH, HEIGHT, WHITE
+from settings import WIDTH, HEIGHT, BLUE, BLACK, WHITE, GREEN, RED
 
 pygame.init()
 
@@ -26,19 +26,52 @@ def game_menu(screen):
         GAME_MENU_MOUSE_POS = pygame.mouse.get_pos()
 
         # Create buttons for all minigames
-        painting_button = Button(image=None, pos=(WIDTH // 2, HEIGHT // 5), 
+    
+        
+        painting_classification_display = pygame.Rect(0, 0, 400, 250)  # Adjust size and position as needed
+        painting_classification_display.center = (WIDTH / 2 - 250, HEIGHT / 6 + 150)
+        pygame.draw.rect(screen, BLUE, painting_classification_display)  # Background color
+        pygame.draw.rect(screen, BLACK, painting_classification_display, 3)  # Border
+
+        painting_classification_topcenter_x,  painting_classification_topcenter_y =  painting_classification_display.midtop
+        painting_classification_bottomcenter_x,  painting_classification_bottomcenter_y =  painting_classification_display.midbottom
+
+        painting_button = Button(image=None, pos=(painting_classification_topcenter_x, painting_classification_topcenter_y - 25), 
                                  text_input="Painting Classification", font=pygame.font.Font(None, 36), 
                                  base_color="Black", hovering_color="Blue")
+        
+        identity_verification_display = pygame.Rect( 0,  0, 400, 250)  # Adjust size and position as needed
+        identity_verification_display.center = (WIDTH / 2 + 250, HEIGHT / 6 + 150)
+        pygame.draw.rect(screen, BLUE,  identity_verification_display)  # Background color
+        pygame.draw.rect(screen, BLACK,  identity_verification_display, 3)  # Border
 
-        identity_button = Button(image=None, pos=(WIDTH // 2, HEIGHT // 5 + 75), 
+        identity_verification_topcenter_x,  identity_verification_topcenter_y =  identity_verification_display.midtop
+        identity_verification_bottomcenter_x,  identity_verification_bottomcenter_y =  identity_verification_display.midbottom
+
+        identity_button = Button(image=None, pos=(identity_verification_topcenter_x, identity_verification_topcenter_y - 25), 
                                  text_input="Identity Verification", font=pygame.font.Font(None, 36), 
                                  base_color="Black", hovering_color="Blue")
+        
+        key_change_display = pygame.Rect(0, 0, 400, 250)  # Adjust size and position as needed
+        key_change_display.center = (painting_classification_bottomcenter_x,  painting_classification_bottomcenter_y + 225)
+        pygame.draw.rect(screen, BLUE, key_change_display)  # Background color
+        pygame.draw.rect(screen, BLACK, key_change_display, 3)  # Border
 
-        key_button = Button(image=None, pos=(WIDTH // 2, HEIGHT // 5 + 150), 
+        key_change_topcenter_x,  key_change_topcenter_y =  key_change_display.midtop
+
+        key_button = Button(image=None, pos=(key_change_topcenter_x, key_change_topcenter_y - 25), 
                             text_input="Key Change", font=pygame.font.Font(None, 36), 
                             base_color="Black", hovering_color="Blue")
 
-        seek_button = Button(image=None, pos=(WIDTH // 2, HEIGHT // 5 + 225), 
+        
+        seek_and_find_display = pygame.Rect( 0,  0, 400, 250)  # Adjust size and position as needed
+        seek_and_find_display.center = (identity_verification_bottomcenter_x,  identity_verification_bottomcenter_y + 225)
+        pygame.draw.rect(screen, BLUE,  seek_and_find_display)  # Background color
+        pygame.draw.rect(screen, BLACK,  seek_and_find_display, 3)  # Border
+
+        seek_and_find_topcenter_x,  seek_and_find_topcenter_y =  seek_and_find_display.midtop
+
+        seek_button = Button(image=None, pos=(seek_and_find_topcenter_x, seek_and_find_topcenter_y - 25), 
                              text_input="Seek and Find", font=pygame.font.Font(None, 36), 
                              base_color="Black", hovering_color="Blue")
 

@@ -44,6 +44,49 @@ global back_button
 back_button = Button(image=None, pos=(WIDTH - 150, HEIGHT - 75), text_input="BACK", font=FONT, base_color="Green", hovering_color="Red")
 back_button.changeColor(PAINTING_CLASSIFICATION_MOUSE_POS)
 
+# Initialize game state
+game_state = "instructions"  # Start with the instructions screen
+
+def show_instructions():
+    """Display instructions and wait for user input to proceed."""
+    instruction_text = [
+        "Welcome to Painting Classification Minigame!",
+        "Instructions:",
+        "- You will be shown a painting and details about it.",
+        "- Select the correct level based on the painting's value.",
+        "- Click on the level to submit your answer.",
+        "- You have 5 rounds to play. Good luck!",
+        "Press any key to continue..."
+    ]
+
+    while True:
+        screen.fill(WHITE)  # Clear the screen
+
+        # Draw instructions box
+        pygame.draw.rect(screen, WHITE, (200, 200, 800, 600))  # White background box
+        pygame.draw.rect(screen, BLACK, (200, 200, 800, 600), 3)  # Black outline
+
+        # Render instructions text
+        y = 250
+        for line in instruction_text:
+            text_surface = FONT.render(line, True, BLACK)
+            text_rect = text_surface.get_rect(center=(WIDTH // 2, y))
+            screen.blit(text_surface, text_rect)
+            y += 50
+
+        pygame.display.flip()
+
+        # Wait for user input to proceed
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.KEYDOWN or event.type == pygame.MOUSEBUTTONDOWN:
+                return  # Exit function when a key or mouse click is detected
+
+# Show instructions before starting the game loop
+show_instructions()
+
 def draw_text(text, x, y, color=BLACK):
     rendered_text = FONT.render(text, True, color)
     screen.blit(rendered_text, (x, y))
@@ -63,7 +106,7 @@ def check_answer_click(pos):
             if selected_answer == painting_information[current_question]["answer"]:
                 score += 1  # Increment score if correct
             
-
+show_instructions()
 
 running = True
 while running:
