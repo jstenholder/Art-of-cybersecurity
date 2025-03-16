@@ -8,7 +8,7 @@ pygame.init()
 
 # Set up display
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Painting Classification Minigame")
+pygame.display.set_caption("Identity Classification Minigame")
 
 # Load images
 character_images = [
