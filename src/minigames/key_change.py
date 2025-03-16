@@ -1,23 +1,14 @@
 import pygame, random, sys
-from settings import WIDTH, HEIGHT, BLUE, BLACK
+from settings import WIDTH, HEIGHT, BLUE, BLACK, WHITE, GREEN, RED
 from button import Button
+from settings import FONT
 
 # Initialize pygame
 pygame.init()
 
-# Constants
-WIDTH, HEIGHT = 1200, 1000
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-BLUE = (100, 149, 237)
-GREEN = (50, 205, 50)
-RED = (220, 20, 60)
-FONT = pygame.font.Font(None, 36)
-
 # Set up display
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Key Change Minigame")
-font = pygame.font.Font(None, 36)
 
 # Load images
 key_images = [
@@ -67,20 +58,29 @@ key_information = [
 ]
 
 # Game state
+global KEY_CHANGE_MOUSE_POS
+KEY_CHANGE_MOUSE_POS = pygame.mouse.get_pos()
+global rounds_played
 rounds_played = 0
-max_rounds = 7
+max_rounds = 10
+global score
 score = 0
 selected_answer = -1
+global show_result
 show_result = False
+global show_next_button
 show_next_button = False
+global message
 message = ""
-current_keys = []
+global current_keys
+
+global back_button
+back_button = Button(image=None, pos=(WIDTH - 150, HEIGHT - 75), text_input="BACK", font=FONT, base_color="Green", hovering_color="Red")
+back_button.changeColor(KEY_CHANGE_MOUSE_POS)
 
 def select_new_keys():
-    """Pick four random keys, ensuring at least one is secure."""
     global current_keys
     current_keys = random.sample(key_information, 4)
-    
     # Ensure at least one key is secure
     if not any(k["answer"] == 0 for k in current_keys):  
         secure_key = random.choice([k for k in key_information if k["answer"] == 0])
@@ -109,48 +109,54 @@ def check_key_click(pos):
 
 running = True
 while running:
+    
+    KEY_CHANGE_MOUSE_POS = pygame.mouse.get_pos()
     screen.fill(WHITE)
 
     if rounds_played >= max_rounds:
 
         if score < 7:
             
-            results_surface2 = font.render("Definitely not as secure as we typically want to be...Hope no ones tries to break in...",False,'Black').convert_alpha()
+            results_surface2 = FONT.render("Definitely not as secure as we typically want to be...Hope no ones tries to break in...",False,'Black').convert_alpha()
             results_rect2 = results_surface2.get_rect(center = (WIDTH // 2, HEIGHT // 2))
             screen.blit(results_surface2,results_rect2)
 
-            results_surface1 = font.render("You've successfully changed all the keys", False, 'Black').convert_alpha()
+            results_surface1 = FONT.render("You've successfully changed all the keys", False, 'Black').convert_alpha()
             results_rect1 = results_surface1.get_rect(center=(WIDTH // 2, results_rect2.centery - 50))
             screen.blit(results_surface1, results_rect1)
 
-            results_surface3 = font.render(f"Final Score: {score} / {max_rounds}", False, 'Black').convert_alpha()
+            results_surface3 = FONT.render(f"Final Score: {score} / {max_rounds}", False, 'Black').convert_alpha()
             results_rect3 = results_surface3.get_rect(center=(WIDTH // 2, results_rect2.centery + 50))
             screen.blit(results_surface3, results_rect3)
+
+            back_button.update(screen)
 
         else:
             
-            results_surface2 = font.render("Great job keeping the museum safe!",False,'Black').convert_alpha()
+            results_surface2 = FONT.render("Great job keeping the museum safe!",False,'Black').convert_alpha()
             results_rect2 = results_surface2.get_rect(center = (WIDTH // 2, HEIGHT // 2))
             screen.blit(results_surface2,results_rect2)
 
-            results_surface1 = font.render("You've successfully changed all the keys", False, 'Black').convert_alpha()
+            results_surface1 = FONT.render("You've successfully changed all the keys", False, 'Black').convert_alpha()
             results_rect1 = results_surface1.get_rect(center=(WIDTH // 2, results_rect2.centery - 50))
             screen.blit(results_surface1, results_rect1)
 
-            results_surface3 = font.render(f"Final Score: {score} / {max_rounds}", False, 'Black').convert_alpha()
+            results_surface3 = FONT.render(f"Final Score: {score} / {max_rounds}", False, 'Black').convert_alpha()
             results_rect3 = results_surface3.get_rect(center=(WIDTH // 2, results_rect2.centery + 50))
             screen.blit(results_surface3, results_rect3)
+            
+            back_button.update(screen)
 
     else:
-        rounds_surface = font.render(f"Round {rounds_played + 1}",False,'Black').convert_alpha()
+        rounds_surface = FONT.render(f"Round {rounds_played + 1}",False,'Black').convert_alpha()
         rounds_rect = rounds_surface.get_rect(center = (WIDTH // 2, 50))
         screen.blit(rounds_surface,rounds_rect)
         
-        prompt_surface = font.render("Select the secure key",False,'Black').convert_alpha()
+        prompt_surface = FONT.render("Select the secure key",False,'Black').convert_alpha()
         prompt_rect = prompt_surface.get_rect(center = (WIDTH // 2, 100))
         screen.blit(prompt_surface,prompt_rect)
 
-        score_surface = font.render(f"Score: {score}",False,'Black').convert_alpha()
+        score_surface = FONT.render(f"Score: {score}",False,'Black').convert_alpha()
         score_rect = score_surface.get_rect(topleft = (50, 50))
         screen.blit(score_surface,score_rect)
 
@@ -165,15 +171,15 @@ while running:
         if show_result:
 
             if selected_answer == 0:
-                correct_surface = font.render(message,False,'Green').convert_alpha()
+                correct_surface = FONT.render(message,False,'Green').convert_alpha()
                 correct_rect = correct_surface.get_rect(center = (WIDTH // 2, HEIGHT - 100))
                 screen.blit(correct_surface,correct_rect)
             else:
-                correct_surface = font.render(message,False,'Red').convert_alpha()
+                correct_surface = FONT.render(message,False,'Red').convert_alpha()
                 correct_rect = correct_surface.get_rect(center = (WIDTH // 2, HEIGHT - 100))
                 screen.blit(correct_surface,correct_rect)
 
-            next_surface = font.render("Click 'Next' to continue",False,'Black').convert_alpha()
+            next_surface = FONT.render("Click 'Next' to continue",False,'Black').convert_alpha()
             next_rect = next_surface.get_rect(center = (WIDTH // 2, HEIGHT - 50))
             screen.blit(next_surface,next_rect)
 
@@ -188,6 +194,11 @@ while running:
                 selected_answer = -1
                 show_result = False
                 show_next_button = False
+
+            if back_button.checkForInput(KEY_CHANGE_MOUSE_POS):
+                from game import game_menu
+                game_menu(screen)
+
             else:
                 check_key_click(event.pos)
 
