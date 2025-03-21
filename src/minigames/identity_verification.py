@@ -73,6 +73,50 @@ def check_answer_click(pos):
                 score += 1
             rounds_played += 1
 
+
+# Initialize game state
+game_state = "instructions"  # Start with the instructions screen
+
+def show_instructions():
+    """Display instructions and wait for user input to proceed."""
+    instruction_text = [
+        "Welcome to Identity Verification Minigame!",
+        "Instructions:",
+        "- You will be shown a delivery droid",
+        "- Based on what they are delivering and if their identity is valid, you can accept or deny them access",
+        "- Select 'yes' or 'no to submit your answer.",
+        "- You have 5 rounds to play. Good luck!",
+        "Press any key to continue..."
+    ]
+
+    while True:
+        screen.fill(WHITE)  # Clear the screen
+
+        # Draw instructions box
+        pygame.draw.rect(screen, WHITE, (200, 200, 800, 600))  # White background box
+        pygame.draw.rect(screen, BLACK, (200, 200, 800, 600), 3)  # Black outline
+
+        # Render instructions text
+        y = 250
+        for line in instruction_text:
+            text_surface = FONT_TEKO_REGULAR.render(line, True, BLACK)
+            text_rect = text_surface.get_rect(center=(WIDTH // 2, y))
+            screen.blit(text_surface, text_rect)
+            y += 50
+
+        pygame.display.flip()
+
+        # Wait for user input to proceed
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.KEYDOWN or event.type == pygame.MOUSEBUTTONDOWN:
+                return  # Exit function when a key or mouse click is detected
+
+# Show instructions before starting the game loop
+show_instructions()    
+
 running = True
 while running:
     screen.fill(WHITE)

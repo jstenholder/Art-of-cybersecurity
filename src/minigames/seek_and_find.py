@@ -44,6 +44,51 @@ success_message = ""  # Track success message separately
 # Back button setup
 back_button = Button(image=None, pos=(WIDTH - 150, HEIGHT - 75), text_input="BACK", font=FONT_TEKO_SEMIBOLD_SMALL, base_color="Green", hovering_color="Red")
 
+# Initialize game state
+game_state = "instructions"  # Start with the instructions screen
+
+def show_instructions():
+    """Display instructions and wait for user input to proceed."""
+    instruction_text = [
+        "Welcome to the Seek and Find Minigame!",
+        "You need to help your fellow employees find things they've lost",
+        "Instructions:",
+        "- You will be scene from somewhere in the museum",
+        "- The employee will tell you  what they've lost",
+        "- Search the scene to help them find their missing items",
+        "- As a security champion for the museum, be sure to report any un-safe security practices you find",
+        "Press any key to continue..."
+    ]
+
+    while True:
+        screen.fill(WHITE)  # Clear the screen
+
+        # Draw instructions box
+        pygame.draw.rect(screen, WHITE, (200, 200, 800, 600))  # White background box
+        pygame.draw.rect(screen, BLACK, (200, 200, 800, 600), 3)  # Black outline
+
+        # Render instructions text
+        y = 250
+        for line in instruction_text:
+            text_surface = FONT_TEKO_REGULAR.render(line, True, BLACK)
+            text_rect = text_surface.get_rect(center=(WIDTH // 2, y))
+            screen.blit(text_surface, text_rect)
+            y += 50
+
+        pygame.display.flip()
+
+        # Wait for user input to proceed
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.KEYDOWN or event.type == pygame.MOUSEBUTTONDOWN:
+                return  # Exit function when a key or mouse click is detected
+
+# Show instructions before starting the game loop
+show_instructions()
+
+
 while running:
     screen.blit(background, (0, 0))
 

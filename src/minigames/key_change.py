@@ -105,7 +105,51 @@ def check_key_click(pos):
             else:
                 message = key["explanation"]
                 rounds_played += 1 
-        
+
+# Initialize game state
+game_state = "instructions"  # Start with the instructions screen
+
+def show_instructions():
+    """Display instructions and wait for user input to proceed."""
+    instruction_text = [
+        "Welcome to Key Change Minigame!",
+        "As part of the security procedures, we need to go around and change some keys on exhibits",
+        "Instructions:",
+        "- For each of the exhibits, select a new secure key",
+        "- Secure keys must meet the following criteria",
+        "  - The key must have all three groove types",
+        "  - The key cannot have more than two of the same grooves in a row",
+        "  - The key must have at least fourteen notches",
+        "Press any key to continue..."
+    ]
+
+    while True:
+        screen.fill(WHITE)  # Clear the screen
+
+        # Draw instructions box
+        pygame.draw.rect(screen, WHITE, (200, 200, 800, 600))  # White background box
+        pygame.draw.rect(screen, BLACK, (200, 200, 800, 600), 3)  # Black outline
+
+        # Render instructions text
+        y = 250
+        for line in instruction_text:
+            text_surface = FONT_TEKO_REGULAR.render(line, True, BLACK)
+            text_rect = text_surface.get_rect(center=(WIDTH // 2, y))
+            screen.blit(text_surface, text_rect)
+            y += 50
+
+        pygame.display.flip()
+
+        # Wait for user input to proceed
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.KEYDOWN or event.type == pygame.MOUSEBUTTONDOWN:
+                return  # Exit function when a key or mouse click is detected
+
+# Show instructions before starting the game loop
+show_instructions()        
 
 running = True
 while running:
