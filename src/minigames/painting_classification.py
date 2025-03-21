@@ -2,7 +2,7 @@
 import pygame, random, sys
 from settings import WIDTH, HEIGHT, BLUE, BLACK, WHITE, GREEN, RED
 from button import Button
-from settings import FONT
+from settings import FONT_TEKO_BOLD, FONT_TEKO_LIGHT, FONT_TEKO_MEDIUM, FONT_TEKO_REGULAR, FONT_TEKO_SEMIBOLD, FONT_TEKO_BOLD_SMALL, FONT_TEKO_SEMIBOLD_SMALL
 
 # Initialize pygame
 pygame.init()
@@ -41,7 +41,7 @@ global PAINTING_CLASSIFICATION_MOUSE_POS
 PAINTING_CLASSIFICATION_MOUSE_POS = pygame.mouse.get_pos()
 
 global back_button
-back_button = Button(image=None, pos=(WIDTH - 150, HEIGHT - 75), text_input="BACK", font=FONT, base_color="Green", hovering_color="Red")
+back_button = Button(image=None, pos=(WIDTH - 150, HEIGHT - 75), text_input="BACK", font=FONT_TEKO_BOLD_SMALL, base_color="Black", hovering_color="Red")
 back_button.changeColor(PAINTING_CLASSIFICATION_MOUSE_POS)
 
 # Initialize game state
@@ -69,7 +69,7 @@ def show_instructions():
         # Render instructions text
         y = 250
         for line in instruction_text:
-            text_surface = FONT.render(line, True, BLACK)
+            text_surface = FONT_TEKO_REGULAR.render(line, True, BLACK)
             text_rect = text_surface.get_rect(center=(WIDTH // 2, y))
             screen.blit(text_surface, text_rect)
             y += 50
@@ -88,7 +88,7 @@ def show_instructions():
 show_instructions()
 
 def draw_text(text, x, y, color=BLACK):
-    rendered_text = FONT.render(text, True, color)
+    rendered_text = FONT_TEKO_SEMIBOLD_SMALL.render(text, True, color)
     screen.blit(rendered_text, (x, y))
 
 def check_answer_click(pos):
@@ -114,37 +114,37 @@ while running:
     screen.fill(WHITE)
     if rounds_played >= max_rounds:
         if score < 5:
-            results_surface2 = FONT.render("You might need to think about your life choices",False,'Black').convert_alpha()
+            results_surface2 = FONT_TEKO_MEDIUM.render("You might need to think about your life choices",False,'Black').convert_alpha()
             results_rect2 = results_surface2.get_rect(center = (WIDTH // 2, HEIGHT // 2))
             screen.blit(results_surface2,results_rect2)
 
-            results_surface1 = FONT.render("You've successfully processed all incoming packages", False, 'Black').convert_alpha()
+            results_surface1 = FONT_TEKO_MEDIUM.render("You've successfully processed all incoming packages", False, 'Black').convert_alpha()
             results_rect1 = results_surface1.get_rect(center=(WIDTH // 2, results_rect2.centery - 50))
             screen.blit(results_surface1, results_rect1)
 
-            results_surface3 = FONT.render(f"Final Score: {score} / {max_rounds}", False, 'Black').convert_alpha()
+            results_surface3 = FONT_TEKO_BOLD_SMALL.render(f"Final Score: {score} / {max_rounds}", False, 'Black').convert_alpha()
             results_rect3 = results_surface3.get_rect(center=(WIDTH // 2, results_rect2.centery + 50))
             screen.blit(results_surface3, results_rect3)
 
             back_button.update(screen)
         else:
                 
-            results_surface2 = FONT.render("Great job keeping the museum safe!",False,'Black').convert_alpha()
+            results_surface2 = FONT_TEKO_MEDIUM.render("Great job keeping the museum safe!",False,'Black').convert_alpha()
             results_rect2 = results_surface2.get_rect(center = (WIDTH // 2, HEIGHT // 2))
             screen.blit(results_surface2,results_rect2)
 
-            results_surface1 = FONT.render("You've successfully processed all incoming packages", False, 'Black').convert_alpha()
+            results_surface1 = FONT_TEKO_MEDIUM.render("You've successfully processed all incoming packages", False, 'Black').convert_alpha()
             results_rect1 = results_surface1.get_rect(center=(WIDTH // 2, results_rect2.centery - 50))
             screen.blit(results_surface1, results_rect1)
 
-            results_surface3 = FONT.render(f"Final Score: {score} / {max_rounds}", False, 'Black').convert_alpha()
+            results_surface3 = FONT_TEKO_BOLD_SMALL.render(f"Final Score: {score} / {max_rounds}", False, 'Black').convert_alpha()
             results_rect3 = results_surface3.get_rect(center=(WIDTH // 2, results_rect2.centery + 50))
             screen.blit(results_surface3, results_rect3)
 
             back_button.update(screen)
     else:
 
-        rounds_surface = FONT.render(f"Round {rounds_played + 1}",False,'Black').convert_alpha()
+        rounds_surface = FONT_TEKO_MEDIUM.render(f"Round {rounds_played + 1}",False,'Black').convert_alpha()
         rounds_rect = rounds_surface.get_rect(center = (WIDTH // 2, 50))
         screen.blit(rounds_surface,rounds_rect)
            
@@ -155,20 +155,28 @@ while running:
         painting_bottom_left_x, painting_bottom_left_y = painting_rect.bottomleft
 
         # Draw question information
-        info_rect = pygame.Rect(600, 100, 400, 150)
-        pygame.draw.rect(screen, BLUE, info_rect)
-        pygame.draw.rect(screen, BLACK, info_rect, 3)
+        #info_rect = pygame.Rect(600, 100, 400, 150)
+        #pygame.draw.rect(screen, BLUE, info_rect)
+        #pygame.draw.rect(screen, BLACK, info_rect, 3)
 
-        draw_text(f"Artist: {question_data['artist']}", 620, 120, WHITE)
-        draw_text(f"Age: {question_data['age']} years", 620, 160, WHITE)
-        draw_text(f"Value: {question_data['value']}", 620, 200, WHITE)
+        #draw_text(f"Artist: {question_data['artist']}", 620, 120, WHITE)
+        #draw_text(f"Age: {question_data['age']} years", 620, 160, WHITE)
+        #draw_text(f"Value: {question_data['value']}", 620, 200, WHITE)
 
-        draw_text("Value determines the initial level", 600, 280, BLACK)
-        draw_text("(Ex. Value 4 initially goes into Level 4)", 600, 320, BLACK)
-        draw_text("If the artist is Pablo Phishcasso, value increases", 600, 360, BLACK)
-        draw_text("by one level for every five years until Level 4", 600, 400, BLACK)
-        draw_text("For anyone else, the value decreases by one ", 600, 440, BLACK)
-        draw_text("level for every five years until...", 600, 480, BLACK)
+        painting_metadata = [
+        f"Artist: {question_data['artist']}",
+        f"Age: {question_data['age']} years",
+        f"Value: {question_data['value']}"]
+
+        # Draw instructions box
+        pygame.draw.rect(screen, BLUE, (WIDTH // 2, HEIGHT // 4, 200, 100))  # White background box
+
+        y = 250 # Used to print each line on a separate row
+        for line in painting_metadata:
+            text_surface = FONT_TEKO_REGULAR.render(line, True, BLACK)
+            text_rect = text_surface.get_rect(midleft=(WIDTH // 2 + 25, y))
+            screen.blit(text_surface, text_rect)
+            y += 50
 
         # Draw score
         draw_text(f"Score: {score}", 50, 50, BLACK)  # Display score in top-left corner

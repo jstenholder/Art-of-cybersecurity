@@ -1,7 +1,7 @@
 import pygame, random, sys
 from settings import WIDTH, HEIGHT, BLUE, BLACK, WHITE, GREEN, RED
 from button import Button
-from settings import FONT
+from settings import FONT_TEKO_BOLD, FONT_TEKO_LIGHT, FONT_TEKO_MEDIUM, FONT_TEKO_REGULAR, FONT_TEKO_SEMIBOLD, FONT_TEKO_SEMIBOLD_SMALL, FONT_TEKO_BOLD_SMALL
 
 # Initialize pygame
 pygame.init()
@@ -75,7 +75,7 @@ message = ""
 global current_keys
 
 global back_button
-back_button = Button(image=None, pos=(WIDTH - 150, HEIGHT - 75), text_input="BACK", font=FONT, base_color="Green", hovering_color="Red")
+back_button = Button(image=None, pos=(WIDTH - 150, HEIGHT - 75), text_input="BACK", font=FONT_TEKO_SEMIBOLD_SMALL, base_color="Green", hovering_color="Red")
 back_button.changeColor(KEY_CHANGE_MOUSE_POS)
 
 def select_new_keys():
@@ -117,15 +117,15 @@ while running:
 
         if score < 7:
             
-            results_surface2 = FONT.render("Definitely not as secure as we typically want to be...Hope no ones tries to break in...",False,'Black').convert_alpha()
+            results_surface2 = FONT_TEKO_MEDIUM.render("Definitely not as secure as we typically want to be...Hope no ones tries to break in...",False,'Black').convert_alpha()
             results_rect2 = results_surface2.get_rect(center = (WIDTH // 2, HEIGHT // 2))
             screen.blit(results_surface2,results_rect2)
 
-            results_surface1 = FONT.render("You've successfully changed all the keys", False, 'Black').convert_alpha()
+            results_surface1 = FONT_TEKO_MEDIUM.render("You've successfully changed all the keys", False, 'Black').convert_alpha()
             results_rect1 = results_surface1.get_rect(center=(WIDTH // 2, results_rect2.centery - 50))
             screen.blit(results_surface1, results_rect1)
 
-            results_surface3 = FONT.render(f"Final Score: {score} / {max_rounds}", False, 'Black').convert_alpha()
+            results_surface3 = FONT_TEKO_BOLD_SMALL.render(f"Final Score: {score} / {max_rounds}", False, 'Black').convert_alpha()
             results_rect3 = results_surface3.get_rect(center=(WIDTH // 2, results_rect2.centery + 50))
             screen.blit(results_surface3, results_rect3)
 
@@ -133,30 +133,30 @@ while running:
 
         else:
             
-            results_surface2 = FONT.render("Great job keeping the museum safe!",False,'Black').convert_alpha()
+            results_surface2 = FONT_TEKO_MEDIUM.render("Great job keeping the museum safe!",False,'Black').convert_alpha()
             results_rect2 = results_surface2.get_rect(center = (WIDTH // 2, HEIGHT // 2))
             screen.blit(results_surface2,results_rect2)
 
-            results_surface1 = FONT.render("You've successfully changed all the keys", False, 'Black').convert_alpha()
+            results_surface1 = FONT_TEKO_MEDIUM.render("You've successfully changed all the keys", False, 'Black').convert_alpha()
             results_rect1 = results_surface1.get_rect(center=(WIDTH // 2, results_rect2.centery - 50))
             screen.blit(results_surface1, results_rect1)
 
-            results_surface3 = FONT.render(f"Final Score: {score} / {max_rounds}", False, 'Black').convert_alpha()
+            results_surface3 = FONT_TEKO_BOLD_SMALL.render(f"Final Score: {score} / {max_rounds}", False, 'Black').convert_alpha()
             results_rect3 = results_surface3.get_rect(center=(WIDTH // 2, results_rect2.centery + 50))
             screen.blit(results_surface3, results_rect3)
             
             back_button.update(screen)
 
     else:
-        rounds_surface = FONT.render(f"Round {rounds_played + 1}",False,'Black').convert_alpha()
+        rounds_surface = FONT_TEKO_MEDIUM.render(f"Round {rounds_played + 1}",False,'Black').convert_alpha()
         rounds_rect = rounds_surface.get_rect(center = (WIDTH // 2, 50))
         screen.blit(rounds_surface,rounds_rect)
         
-        prompt_surface = FONT.render("Select the secure key",False,'Black').convert_alpha()
+        prompt_surface = FONT_TEKO_MEDIUM.render("Select the secure key",False,'Black').convert_alpha()
         prompt_rect = prompt_surface.get_rect(center = (WIDTH // 2, 100))
         screen.blit(prompt_surface,prompt_rect)
 
-        score_surface = FONT.render(f"Score: {score}",False,'Black').convert_alpha()
+        score_surface = FONT_TEKO_MEDIUM.render(f"Score: {score}",False,'Black').convert_alpha()
         score_rect = score_surface.get_rect(topleft = (50, 50))
         screen.blit(score_surface,score_rect)
 
@@ -171,15 +171,15 @@ while running:
         if show_result:
 
             if selected_answer == 0:
-                correct_surface = FONT.render(message,False,'Green').convert_alpha()
+                correct_surface = FONT_TEKO_SEMIBOLD_SMALL.render(message,False,'Green').convert_alpha()
                 correct_rect = correct_surface.get_rect(center = (WIDTH // 2, HEIGHT - 100))
                 screen.blit(correct_surface,correct_rect)
             else:
-                correct_surface = FONT.render(message,False,'Red').convert_alpha()
+                correct_surface = FONT_TEKO_SEMIBOLD_SMALL.render(message,False,'Red').convert_alpha()
                 correct_rect = correct_surface.get_rect(center = (WIDTH // 2, HEIGHT - 100))
                 screen.blit(correct_surface,correct_rect)
 
-            next_surface = FONT.render("Click 'Next' to continue",False,'Black').convert_alpha()
+            next_surface = FONT_TEKO_SEMIBOLD_SMALL.render("Click 'Next' to continue",False,'Black').convert_alpha()
             next_rect = next_surface.get_rect(center = (WIDTH // 2, HEIGHT - 50))
             screen.blit(next_surface,next_rect)
 

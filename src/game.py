@@ -1,6 +1,6 @@
 import pygame, sys
 from button import Button
-from settings import WIDTH, HEIGHT, BLUE, BLACK, WHITE, GREEN, RED
+from settings import WIDTH, HEIGHT, BLUE, BLACK, WHITE, GREEN, RED, FONT_TEKO_BOLD, FONT_TEKO_LIGHT, FONT_TEKO_MEDIUM, FONT_TEKO_REGULAR, FONT_TEKO_SEMIBOLD, FONT, FONT_TEKO_BOLD_SMALL
 
 pygame.init()
 
@@ -25,11 +25,14 @@ def game_menu(screen):
         screen.fill(WHITE)
         GAME_MENU_MOUSE_POS = pygame.mouse.get_pos()
 
+        results_surface2 = FONT_TEKO_SEMIBOLD.render("MINIGAMES",False,'Black').convert_alpha()
+        results_rect2 = results_surface2.get_rect(center = (WIDTH // 2, 75))
+        screen.blit(results_surface2,results_rect2)
+
         # Create buttons for all minigames
     
-        
         painting_classification_display = pygame.Rect(0, 0, 400, 250)  # Adjust size and position as needed
-        painting_classification_display.center = (WIDTH / 2 - 250, HEIGHT / 6 + 150)
+        painting_classification_display.center = (WIDTH / 2 - 250, HEIGHT / 6 + 175)
         pygame.draw.rect(screen, BLUE, painting_classification_display)  # Background color
         pygame.draw.rect(screen, BLACK, painting_classification_display, 3)  # Border
 
@@ -37,11 +40,11 @@ def game_menu(screen):
         painting_classification_bottomcenter_x,  painting_classification_bottomcenter_y =  painting_classification_display.midbottom
 
         painting_button = Button(image=None, pos=(painting_classification_topcenter_x, painting_classification_topcenter_y - 25), 
-                                 text_input="Painting Classification", font=pygame.font.Font(None, 36), 
+                                 text_input="Painting Classification", font=FONT_TEKO_MEDIUM, 
                                  base_color="Black", hovering_color="Blue")
         
         identity_verification_display = pygame.Rect( 0,  0, 400, 250)  # Adjust size and position as needed
-        identity_verification_display.center = (WIDTH / 2 + 250, HEIGHT / 6 + 150)
+        identity_verification_display.center = (WIDTH / 2 + 250, HEIGHT / 6 + 175)
         pygame.draw.rect(screen, BLUE,  identity_verification_display)  # Background color
         pygame.draw.rect(screen, BLACK,  identity_verification_display, 3)  # Border
 
@@ -49,7 +52,7 @@ def game_menu(screen):
         identity_verification_bottomcenter_x,  identity_verification_bottomcenter_y =  identity_verification_display.midbottom
 
         identity_button = Button(image=None, pos=(identity_verification_topcenter_x, identity_verification_topcenter_y - 25), 
-                                 text_input="Identity Verification", font=pygame.font.Font(None, 36), 
+                                 text_input="Identity Verification", font=FONT_TEKO_MEDIUM, 
                                  base_color="Black", hovering_color="Blue")
         
         key_change_display = pygame.Rect(0, 0, 400, 250)  # Adjust size and position as needed
@@ -60,7 +63,7 @@ def game_menu(screen):
         key_change_topcenter_x,  key_change_topcenter_y =  key_change_display.midtop
 
         key_button = Button(image=None, pos=(key_change_topcenter_x, key_change_topcenter_y - 25), 
-                            text_input="Key Change", font=pygame.font.Font(None, 36), 
+                            text_input="Key Change", font=FONT_TEKO_MEDIUM, 
                             base_color="Black", hovering_color="Blue")
 
         
@@ -72,12 +75,12 @@ def game_menu(screen):
         seek_and_find_topcenter_x,  seek_and_find_topcenter_y =  seek_and_find_display.midtop
 
         seek_button = Button(image=None, pos=(seek_and_find_topcenter_x, seek_and_find_topcenter_y - 25), 
-                             text_input="Seek and Find", font=pygame.font.Font(None, 36), 
+                             text_input="Seek and Find", font=FONT_TEKO_MEDIUM, 
                              base_color="Black", hovering_color="Blue")
 
         back_button = Button(image=None, pos=(WIDTH - 150, HEIGHT - 75), 
-                             text_input="BACK", font=pygame.font.Font(None, 50), 
-                             base_color="Green", hovering_color="Red")
+                             text_input="BACK", font=FONT_TEKO_BOLD_SMALL, 
+                             base_color="Black", hovering_color="Blue")
 
         # Update all buttons
         for button in [painting_button, identity_button, key_button, seek_button, back_button]:

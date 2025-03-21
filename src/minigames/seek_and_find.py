@@ -1,7 +1,8 @@
 import pygame, random, sys
 from settings import WIDTH, HEIGHT, BLUE, BLACK, WHITE, GREEN, RED
 from button import Button
-from settings import FONT
+from settings import FONT_TEKO_BOLD, FONT_TEKO_LIGHT, FONT_TEKO_MEDIUM, FONT_TEKO_REGULAR, FONT_TEKO_SEMIBOLD, FONT_TEKO_SEMIBOLD_SMALL, FONT_TEKO_BOLD_SMALL
+
 
 # Initialize Pygame
 pygame.init()
@@ -41,7 +42,7 @@ message_timer = 0  # Timer to control success message duration
 success_message = ""  # Track success message separately
 
 # Back button setup
-back_button = Button(image=None, pos=(WIDTH - 150, HEIGHT - 75), text_input="BACK", font=FONT, base_color="Green", hovering_color="Red")
+back_button = Button(image=None, pos=(WIDTH - 150, HEIGHT - 75), text_input="BACK", font=FONT_TEKO_SEMIBOLD_SMALL, base_color="Green", hovering_color="Red")
 
 while running:
     screen.blit(background, (0, 0))

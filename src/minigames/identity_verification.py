@@ -1,7 +1,7 @@
 import pygame, random, sys
 from settings import WIDTH, HEIGHT, BLUE, BLACK, WHITE, GREEN, RED
 from button import Button
-from settings import FONT
+from settings import FONT_TEKO_BOLD, FONT_TEKO_LIGHT, FONT_TEKO_MEDIUM, FONT_TEKO_REGULAR, FONT_TEKO_SEMIBOLD, FONT_TEKO_SEMIBOLD_SMALL, FONT_TEKO_BOLD_SMALL
 
 # Initialize pygame
 pygame.init()
@@ -44,12 +44,12 @@ global IDENTITY_VERIFICATION_MOUSE_POS
 IDENTITY_VERIFICATION = pygame.mouse.get_pos()
 
 global back_button
-back_button = Button(image=None, pos=(WIDTH - 150, HEIGHT - 75), text_input="BACK", font=FONT, base_color="Green", hovering_color="Red")
+back_button = Button(image=None, pos=(WIDTH - 150, HEIGHT - 75), text_input="BACK", font=FONT_TEKO_SEMIBOLD_SMALL, base_color="Green", hovering_color="Red")
 back_button.changeColor(IDENTITY_VERIFICATION)
 
 # Function to draw text
 def draw_text(text, x, y, color=BLACK):
-    rendered_text = FONT.render(text, True, color)
+    rendered_text = FONT_TEKO_SEMIBOLD_SMALL.render(text, True, color)
     screen.blit(rendered_text, (x, y))
 
 # Function to check if a choice is clicked
@@ -81,37 +81,37 @@ while running:
 
     if rounds_played >= max_rounds:
         if score < 7:
-            results_surface2 = FONT.render("You might need to think about your life choices",False,'Black').convert_alpha()
+            results_surface2 = FONT_TEKO_MEDIUM.render("You might need to think about your life choices",False,'Black').convert_alpha()
             results_rect2 = results_surface2.get_rect(center = (WIDTH // 2, HEIGHT // 2))
             screen.blit(results_surface2,results_rect2)
 
-            results_surface1 = FONT.render("You've successfully processed all incoming packages", False, 'Black').convert_alpha()
+            results_surface1 = FONT_TEKO_MEDIUM.render("You've successfully processed all incoming packages", False, 'Black').convert_alpha()
             results_rect1 = results_surface1.get_rect(center=(WIDTH // 2, results_rect2.centery - 50))
             screen.blit(results_surface1, results_rect1)
 
-            results_surface3 = FONT.render(f"Final Score: {score} / {max_rounds}", False, 'Black').convert_alpha()
+            results_surface3 = FONT_TEKO_BOLD_SMALL.render(f"Final Score: {score} / {max_rounds}", False, 'Black').convert_alpha()
             results_rect3 = results_surface3.get_rect(center=(WIDTH // 2, results_rect2.centery + 50))
             screen.blit(results_surface3, results_rect3)
 
             back_button.update(screen)
         else:
                 
-            results_surface2 = FONT.render("Great job keeping the museum safe!",False,'Black').convert_alpha()
+            results_surface2 = FONT_TEKO_MEDIUM.render("Great job keeping the museum safe!",False,'Black').convert_alpha()
             results_rect2 = results_surface2.get_rect(center = (WIDTH // 2, HEIGHT // 2))
             screen.blit(results_surface2,results_rect2)
 
-            results_surface1 = FONT.render("You've successfully processed all incoming packages", False, 'Black').convert_alpha()
+            results_surface1 = FONT_TEKO_MEDIUM.render("You've successfully processed all incoming packages", False, 'Black').convert_alpha()
             results_rect1 = results_surface1.get_rect(center=(WIDTH // 2, results_rect2.centery - 50))
             screen.blit(results_surface1, results_rect1)
 
-            results_surface3 = FONT.render(f"Final Score: {score} / {max_rounds}", False, 'Black').convert_alpha()
+            results_surface3 = FONT_TEKO_BOLD_SMALL.render(f"Final Score: {score} / {max_rounds}", False, 'Black').convert_alpha()
             results_rect3 = results_surface3.get_rect(center=(WIDTH // 2, results_rect2.centery + 50))
             screen.blit(results_surface3, results_rect3)
 
             back_button.update(screen)
         
     else:
-        rounds_surface = FONT.render(f"Round {rounds_played + 1}",False,'Black').convert_alpha()
+        rounds_surface = FONT_TEKO_MEDIUM.render(f"Round {rounds_played + 1}",False,'Black').convert_alpha()
         rounds_rect = rounds_surface.get_rect(center = (WIDTH // 2, 50))
         screen.blit(rounds_surface,rounds_rect)
 
@@ -123,25 +123,42 @@ while running:
         choice_x = character_bottom_left_x
 
         character_center_x, character_center_y = character_rect.center
-        draw_text(f"{question_data['ID']}", character_center_x - 40, character_center_y + 25, BLACK)
+        #draw_text(f"{question_data['ID']}", character_center_x - 40, character_center_y + 25, BLACK)
 
-        draw_text(f"Hello! My ID number is {question_data['Fake ID']}", 400, 150, BLACK)
-        draw_text(f"I'm here to deliver your package", 400, 175, BLACK)
+        #draw_text(f"Hello! My ID number is {question_data['Fake ID']}", 400, 150, BLACK)
+        #draw_text(f"I'm here to deliver your package", 400, 175, BLACK)
+
+        character_message = [
+        f"Hello! My ID number is {question_data['Fake ID']}",
+        f"I'm here to deliver your package"]
+
+        # Draw instructions box
+        # pygame.draw.rect(screen, BLUE, (WIDTH // 2, HEIGHT // 4, 200, 100))  # White background box
+
+        y = 150 # Used to print each line on a separate row
+        for line in character_message:
+            text_surface = FONT_TEKO_REGULAR.render(line, True, BLACK)
+            text_rect = text_surface.get_rect(midleft=(400, y))
+            screen.blit(text_surface, text_rect)
+            y += 50
+
+        text_surface = FONT_TEKO_REGULAR.render("Are you going to accept this delivery?", True, BLACK)
+        text_rect = text_surface.get_rect(midleft=(character_bottom_left_x, character_bottom_left_y + 50))
+        screen.blit(text_surface, text_rect)    
             
-        info_rect = pygame.Rect(400, 300, 375, 160)
-        pygame.draw.rect(screen, BLACK, info_rect)
+        #info_rect = pygame.Rect(400, 300, 375, 160)
+        #pygame.draw.rect(screen, BLACK, info_rect)
 
-        character_id_rect = character_id_images[0].get_rect(topleft=(405, 305))
-        screen.blit(character_id_images[0], character_id_rect)
-        draw_text(f"ID: {question_data['ID']}", 570, 340, WHITE)
-        draw_text(f"Profession:", 570, 370, WHITE)
-        draw_text(f"{question_data['profession']}", 570, 400, WHITE)
-
-        draw_text("Are you going to accept this delivery?", character_bottom_left_x, character_bottom_left_y + 50, BLACK)
+        #character_id_rect = character_id_images[0].get_rect(topleft=(405, 305))
+        #screen.blit(character_id_images[0], character_id_rect)
+        #draw_text(f"ID: {question_data['ID']}", 570, 340, WHITE)
+        #draw_text(f"Profession:", 570, 370, WHITE)
+        #draw_text(f"{question_data['profession']}", 570, 400, WHITE)
             
         for i, choice in enumerate(question_data["choices"]):
             color = BLUE if i == selected_answer else BLACK
             draw_text(f"{i + 1}. {choice}", choice_x, character_bottom_left_y + 100 + i * 50, color)
+            
             
         if show_result:
             result_text = "Correct!" if selected_answer == question_data["answer"] else f"Wrong! {question_data['explanation']}"
