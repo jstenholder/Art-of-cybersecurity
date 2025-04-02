@@ -12,6 +12,8 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Painting Classification Minigame")
 #screen.fill(BLACK)
 
+background_image = pygame.image.load("assets/painting_classification.png")  # CHANGED
+
 # Load images
 painting_images = [
     pygame.image.load("assets/painting1.png"),
@@ -111,11 +113,13 @@ show_instructions()
 running = True
 while running:
     PAINTING_CLASSIFICATION_MOUSE_POS = pygame.mouse.get_pos()
-    screen.fill(WHITE)
+
+    screen.blit(background_image, (0, 0))  # CHANGED
+
     if rounds_played >= max_rounds:
         if score < 5:
             results_surface2 = FONT_TEKO_MEDIUM.render("You might need to think about your life choices",False,'Black').convert_alpha()
-            results_rect2 = results_surface2.get_rect(center = (WIDTH // 2, HEIGHT // 2))
+            results_rect2 = results_surface2.get_rect(center = (WIDTH // 2, HEIGHT // 2 + 100))
             screen.blit(results_surface2,results_rect2)
 
             results_surface1 = FONT_TEKO_MEDIUM.render("You've successfully processed all incoming packages", False, 'Black').convert_alpha()
@@ -130,7 +134,7 @@ while running:
         else:
                 
             results_surface2 = FONT_TEKO_MEDIUM.render("Great job keeping the museum safe!",False,'Black').convert_alpha()
-            results_rect2 = results_surface2.get_rect(center = (WIDTH // 2, HEIGHT // 2))
+            results_rect2 = results_surface2.get_rect(center = (WIDTH // 2, HEIGHT // 2 + 100))
             screen.blit(results_surface2,results_rect2)
 
             results_surface1 = FONT_TEKO_MEDIUM.render("You've successfully processed all incoming packages", False, 'Black').convert_alpha()
@@ -143,13 +147,9 @@ while running:
 
             back_button.update(screen)
     else:
-
-        rounds_surface = FONT_TEKO_MEDIUM.render(f"Round {rounds_played + 1}",False,'Black').convert_alpha()
-        rounds_rect = rounds_surface.get_rect(center = (WIDTH // 2, 50))
-        screen.blit(rounds_surface,rounds_rect)
            
         question_data = painting_information[current_question]
-        painting_rect = question_data["painting"].get_rect(center=(300, 300))
+        painting_rect = question_data["painting"].get_rect(center=(300, 750))
         screen.blit(question_data["painting"], painting_rect)
 
         painting_bottom_left_x, painting_bottom_left_y = painting_rect.bottomleft
@@ -169,22 +169,33 @@ while running:
         f"Value: {question_data['value']}"]
 
         # Draw instructions box
-        pygame.draw.rect(screen, BLUE, (WIDTH // 2, HEIGHT // 4, 200, 100))  # White background box
+        pygame.draw.rect(screen, WHITE, (WIDTH // 2, 550, 400, 200))  # White background box
 
-        y = 250 # Used to print each line on a separate row
+        y = 600 # Used to print each line on a separate row
         for line in painting_metadata:
             text_surface = FONT_TEKO_REGULAR.render(line, True, BLACK)
             text_rect = text_surface.get_rect(midleft=(WIDTH // 2 + 25, y))
             screen.blit(text_surface, text_rect)
             y += 50
 
-        # Draw score
-        draw_text(f"Score: {score}", 50, 50, BLACK)  # Display score in top-left corner
+        rounds_surface = FONT_TEKO_REGULAR.render(f"Round {rounds_played + 1}",False,'Black').convert_alpha()
+        rounds_rect = rounds_surface.get_rect(center = (WIDTH // 2, 25))
+        screen.blit(rounds_surface,rounds_rect)
 
-        for i, choice in enumerate(question_data["choices"]):
-            choice_y = (painting_bottom_left_y + 100) + i * 50
-            pygame.draw.rect(screen, GREEN if selected_answer == i else WHITE, pygame.Rect(painting_bottom_left_x, choice_y, 300, 30))
-            draw_text(choice, painting_bottom_left_x + 10, choice_y + 5, BLACK)
+        # Draw score
+        #draw_text(f"Score: {score}", 50, 50, BLACK)  # Display score in top-left corner
+        score_surface = FONT_TEKO_REGULAR.render(f"Score: {score}",False,'Black').convert_alpha()
+        score_rect = score_surface.get_rect(center = (50, 25))
+        screen.blit(score_surface,score_rect)
+
+        question_surface = FONT_TEKO_REGULAR.render("Where does this belong?",False,'Black').convert_alpha()
+        question_rect = question_surface.get_rect(center = (WIDTH // 2 + 125, 800))
+        screen.blit(question_surface,question_rect)
+
+        #for i, choice in enumerate(question_data["choices"]):
+            #choice_y = (painting_bottom_left_y + 100) + i * 50
+            #pygame.draw.rect(screen, GREEN if selected_answer == i else WHITE, pygame.Rect(painting_bottom_left_x, choice_y, 300, 30))
+            #draw_text(choice, painting_bottom_left_x + 10, choice_y + 5, BLACK)
 
         if show_result:
             correct_answer = question_data["answer"]

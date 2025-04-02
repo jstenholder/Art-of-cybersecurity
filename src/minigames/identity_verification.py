@@ -10,6 +10,8 @@ pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Identity Classification Minigame")
 
+background_image = pygame.image.load("assets/identity_verification.png")  # CHANGED
+
 # Load images
 character_images = [
     pygame.image.load("assets/robot1_original.png"),
@@ -119,9 +121,9 @@ show_instructions()
 
 running = True
 while running:
-    screen.fill(WHITE)
-
     IDENTITY_VERIFICATION = pygame.mouse.get_pos()
+
+    screen.blit(background_image, (0, 0))  # CHANGED
 
     if rounds_played >= max_rounds:
         if score < 7:
@@ -155,12 +157,18 @@ while running:
             back_button.update(screen)
         
     else:
-        rounds_surface = FONT_TEKO_MEDIUM.render(f"Round {rounds_played + 1}",False,'Black').convert_alpha()
-        rounds_rect = rounds_surface.get_rect(center = (WIDTH // 2, 50))
+        rounds_surface = FONT_TEKO_REGULAR.render(f"Round {rounds_played + 1}",False,'Black').convert_alpha()
+        rounds_rect = rounds_surface.get_rect(center = (WIDTH // 2, 25))
         screen.blit(rounds_surface,rounds_rect)
 
+        # Draw score
+        #draw_text(f"Score: {score}", 50, 50, BLACK)  # Display score in top-left corner
+        score_surface = FONT_TEKO_REGULAR.render(f"Score: {score}",False,'Black').convert_alpha()
+        score_rect = score_surface.get_rect(center = (50, 25))
+        screen.blit(score_surface,score_rect)
+
         question_data = character_information[current_question]
-        character_rect = question_data["character"].get_rect(center=(200, 300))
+        character_rect = question_data["character"].get_rect(center=(300, 550))
         screen.blit(question_data["character"], character_rect)
 
         character_bottom_left_x, character_bottom_left_y = character_rect.bottomleft
@@ -179,10 +187,10 @@ while running:
         # Draw instructions box
         # pygame.draw.rect(screen, BLUE, (WIDTH // 2, HEIGHT // 4, 200, 100))  # White background box
 
-        y = 150 # Used to print each line on a separate row
+        y = 275 # Used to print each line on a separate row
         for line in character_message:
             text_surface = FONT_TEKO_REGULAR.render(line, True, BLACK)
-            text_rect = text_surface.get_rect(midleft=(400, y))
+            text_rect = text_surface.get_rect(midleft=(450, y))
             screen.blit(text_surface, text_rect)
             y += 50
 
@@ -210,7 +218,6 @@ while running:
             draw_text(result_text, character_bottom_left_x, 900, result_color)
             draw_text("Click 'Next' to continue", character_bottom_left_x, 950, BLACK)
             
-        draw_text(f"Score: {score}", 50, 50)  # Display current score
     
     pygame.display.flip()
     

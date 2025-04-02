@@ -13,7 +13,7 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Seek and Find Game")
 
 # Load background image
-background = pygame.image.load("assets/seek_and_find1.png")  # Replace with your image file
+background = pygame.image.load("assets/seek_and_find.png")  # Replace with your image file
 background = pygame.transform.scale(background, (WIDTH, HEIGHT))
 
 # Font setup

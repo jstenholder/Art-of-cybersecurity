@@ -10,6 +10,8 @@ pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Key Change Minigame")
 
+background_image = pygame.image.load("assets/key_change_cropped.png")  # CHANGED
+
 # Load images
 key_images = [
     pygame.image.load("assets/key1.png"),
@@ -155,7 +157,8 @@ running = True
 while running:
     
     KEY_CHANGE_MOUSE_POS = pygame.mouse.get_pos()
-    screen.fill(WHITE)
+    
+    screen.blit(background_image, (0, 0))  # CHANGED
 
     if rounds_played >= max_rounds:
 
@@ -192,20 +195,23 @@ while running:
             back_button.update(screen)
 
     else:
-        rounds_surface = FONT_TEKO_MEDIUM.render(f"Round {rounds_played + 1}",False,'Black').convert_alpha()
+        rounds_surface = FONT_TEKO_REGULAR.render(f"Round {rounds_played + 1}",False,'Black').convert_alpha()
         rounds_rect = rounds_surface.get_rect(center = (WIDTH // 2, 50))
         screen.blit(rounds_surface,rounds_rect)
+
+        # Draw score
+        #draw_text(f"Score: {score}", 50, 50, BLACK)  # Display score in top-left corner
+        score_surface = FONT_TEKO_REGULAR.render(f"Score: {score}",False,'Black').convert_alpha()
+        score_rect = score_surface.get_rect(center = (50, 50))
+        screen.blit(score_surface,score_rect)
         
-        prompt_surface = FONT_TEKO_MEDIUM.render("Select the secure key",False,'Black').convert_alpha()
+        prompt_surface = FONT_TEKO_MEDIUM.render("Select a secure key for this exhibit",False,'Black').convert_alpha()
         prompt_rect = prompt_surface.get_rect(center = (WIDTH // 2, 100))
         screen.blit(prompt_surface,prompt_rect)
 
-        score_surface = FONT_TEKO_MEDIUM.render(f"Score: {score}",False,'Black').convert_alpha()
-        score_rect = score_surface.get_rect(topleft = (50, 50))
-        screen.blit(score_surface,score_rect)
 
         key_positions = []
-        positions = [(400, 300), (750, 300), (400, 500), (750, 500)]
+        positions = [(200, 800), (450, 800), (700, 800), (950, 800)]
 
         for i, key in enumerate(current_keys):
             key_rect = key["image"].get_rect(center=positions[i])

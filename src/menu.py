@@ -2,26 +2,27 @@ import pygame, sys
 from button import Button
 from settings import WIDTH, HEIGHT, WHITE, FONT_TEKO_BOLD, FONT_TEKO_LIGHT, FONT_TEKO_MEDIUM, FONT_TEKO_REGULAR, FONT_TEKO_SEMIBOLD
 from game import game_menu
+from settings import WIDTH, HEIGHT, BLUE, BLACK, WHITE, GREEN, RED
 
 pygame.init()
 
 # Load background image
-BG = pygame.image.load("assets/Background.png")
+BG = pygame.image.load("assets/main_menu.png")
 
 def main_menu(screen):
     while True:
         screen.blit(BG, (0, 0))
         MENU_MOUSE_POS = pygame.mouse.get_pos()
 
-        MENU_TEXT = FONT_TEKO_BOLD.render("THE ART OF CYBERSECURITY", True, "#b68f40")
-        MENU_RECT = MENU_TEXT.get_rect(center=(WIDTH // 2, 150))
+        #MENU_TEXT = FONT_TEKO_BOLD.render("THE ART OF CYBERSECURITY", True, "#b68f40")
+        #MENU_RECT = MENU_TEXT.get_rect(center=(WIDTH // 2, 150))
 
         PLAY_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(WIDTH // 2, 500), 
-                            text_input="PLAY", font=FONT_TEKO_SEMIBOLD, base_color="#d7fcd4", hovering_color="White")
+                            text_input="PLAY", font=FONT_TEKO_SEMIBOLD, base_color=WHITE, hovering_color=BLUE)
         QUIT_BUTTON = Button(image=pygame.image.load("assets/Quit Rect.png"), pos=(WIDTH // 2, 700), 
-                             text_input="QUIT", font=FONT_TEKO_SEMIBOLD, base_color="#d7fcd4", hovering_color="White")
+                             text_input="QUIT", font=FONT_TEKO_SEMIBOLD, base_color=WHITE, hovering_color=BLUE)
 
-        screen.blit(MENU_TEXT, MENU_RECT)
+        #screen.blit(MENU_TEXT, MENU_RECT)
 
         for button in [PLAY_BUTTON, QUIT_BUTTON]:
             button.changeColor(MENU_MOUSE_POS)

@@ -20,10 +20,14 @@ def start_seek_and_find(screen):
     from minigames.seek_and_find import seek_and_find
     seek_and_find(screen)
 
+background_image = pygame.image.load("assets/game_menu.png")  # CHANGED
+
 def game_menu(screen):
     while True:
-        screen.fill(WHITE)
+        
         GAME_MENU_MOUSE_POS = pygame.mouse.get_pos()
+
+        screen.blit(background_image, (0, 0))  # CHANGED
 
         results_surface2 = FONT_TEKO_SEMIBOLD.render("MINIGAMES",False,'Black').convert_alpha()
         results_rect2 = results_surface2.get_rect(center = (WIDTH // 2, 75))
