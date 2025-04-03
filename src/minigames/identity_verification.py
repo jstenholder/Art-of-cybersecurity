@@ -10,30 +10,78 @@ pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Identity Classification Minigame")
 
-background_image = pygame.image.load("assets/identity_verification.png")  # CHANGED
+background_image = pygame.image.load("assets/identity_verification_background_new.png")  # CHANGED
 
 # Load images
 character_images = [
-    pygame.image.load("assets/robot1_original.png"),
-    pygame.image.load("assets/robot1_imposter1.png"),
-    pygame.image.load("assets/robot1_imposter2.png"),
-    pygame.image.load("assets/robot1_imposter3.png"),
-    pygame.image.load("assets/robot1_imposter4.png")
+    pygame.image.load("assets/blue_imposter_1.png").convert_alpha(), #0
+    pygame.image.load("assets/blue_imposter_2.png").convert_alpha(), #1
+    pygame.image.load("assets/blue_imposter_3.png").convert_alpha(), #2
+    pygame.image.load("assets/blue_imposter_4.png").convert_alpha(), #3
+    pygame.image.load("assets/blue_imposter_5.png").convert_alpha(), #4
+    pygame.image.load("assets/blue_real.png").convert_alpha(), #5
+    pygame.image.load("assets/blue_wrong_id.png").convert_alpha(), #6
+
+    pygame.image.load("assets/green_imposter_1.png").convert_alpha(), #7
+    pygame.image.load("assets/green_imposter_2.png").convert_alpha(), #8
+    pygame.image.load("assets/green_imposter_3.png").convert_alpha(), #9
+    pygame.image.load("assets/green_imposter_4.png").convert_alpha(), #10
+    pygame.image.load("assets/green_imposter_5.png").convert_alpha(), #11
+    pygame.image.load("assets/green_real.png").convert_alpha(), #12
+    pygame.image.load("assets/green_wrong_id.png").convert_alpha(), #13
+
+    pygame.image.load("assets/pink_imposter_1.png").convert_alpha(), #14
+    pygame.image.load("assets/pink_imposter_2.png").convert_alpha(), #15
+    pygame.image.load("assets/pink_imposter_3.png").convert_alpha(), #16
+    pygame.image.load("assets/pink_imposter_4.png").convert_alpha(), #17
+    pygame.image.load("assets/pink_imposter_5.png").convert_alpha(), #18
+    pygame.image.load("assets/pink_real.png").convert_alpha(), #19
+    pygame.image.load("assets/pink_wrong_id.png").convert_alpha(), #20
+
+    pygame.image.load("assets/purple_imposter_1.png").convert_alpha(), #21
+    pygame.image.load("assets/purple_imposter_2.png").convert_alpha(), #22
+    pygame.image.load("assets/purple_imposter_3.png").convert_alpha(), #23
+    pygame.image.load("assets/purple_imposter_4.png").convert_alpha(), #24
+    pygame.image.load("assets/purple_imposter_5.png").convert_alpha(), #25
+    pygame.image.load("assets/purple_real.png").convert_alpha(), #26
+    pygame.image.load("assets/purple_wrong_id.png").convert_alpha(), #27
+
+    pygame.image.load("assets/teal_imposter_1.png").convert_alpha(), #28
+    pygame.image.load("assets/teal_imposter_2.png").convert_alpha(), #29
+    pygame.image.load("assets/teal_imposter_3.png").convert_alpha(), #30
+    pygame.image.load("assets/teal_imposter_4.png").convert_alpha(), #31
+    pygame.image.load("assets/teal_imposter_5.png").convert_alpha(), #32
+    pygame.image.load("assets/teal_real.png").convert_alpha(), #33
+    pygame.image.load("assets/teal_wrong_id.png").convert_alpha() #34
 ]
 
 character_id_images = [
-    pygame.image.load("assets/robot1_id.png")
+    pygame.image.load("assets/blue_id.png"),
+    pygame.image.load("assets/green_id.png"),
+    pygame.image.load("assets/pink_id.png"),
+    pygame.image.load("assets/purple_id.png"),
+    pygame.image.load("assets/teal_id.png")
+]
+
+character_profile_pics = [
+    pygame.image.load("assets/blue_profile_pic_again.png"),
+    pygame.image.load("assets/green_profile_pic.png"),
+    pygame.image.load("assets/pink_profile_pic.png"),
+    pygame.image.load("assets/purple_profile_pic.png"),
+    pygame.image.load("assets/teal_profile_pic.png")
 ]
 
 character_information = [
-    {"character": character_images[0], "ID": "317694", "Fake ID": "317694", "profession": "Museum curator", "choices": ["Yes", "No"], "answer": 0, "explanation": "Everything seems legitimate. Don't keep them waiting!"},
-    {"character": character_images[0], "ID": "317694", "Fake ID": "317694", "profession": "Delivery droid", "choices": ["Yes", "No"], "answer": 0, "explanation": "Everything seems legitimate. Don't keep them waiting!"},
-    {"character": character_images[0], "ID": "317694", "Fake ID": "317694", "profession": "Anthropologist", "choices": ["Yes", "No"], "answer": 0, "explanation": "Everything seems legitimate. Don't keep them waiting!"},
-    {"character": character_images[0], "ID": "317694", "Fake ID": "317694", "profession": "Healthcare droid", "choices": ["Yes", "No"], "answer": 1, "explanation": "Why would a healthcare droid be delivering art?"},
-    {"character": character_images[1], "ID": "317695", "Fake ID": "317694", "profession": "Museum owner", "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID. Something seems off..."},
-    {"character": character_images[2], "ID": "317659", "Fake ID": "317694", "profession": "Historian", "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID. Something seems off..."},
-    {"character": character_images[3], "ID": "317694", "Fake ID": "317694", "profession": "Delivery droid", "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID. Something seems off..."},
-    {"character": character_images[4], "ID": "317694", "Fake ID": "317694", "profession": "Historian", "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID. Something seems off..."},
+    
+    # real blue
+    {"character": character_images[5], "fake_ID": "266470", "real_ID": "266470", "ID": character_id_images[0], "picture": character_profile_pics[0], "choices": ["Yes", "No"], "answer": 0, "explanation": "Everything seems legitimate. Don't keep them waiting!"},
+    # fake blue
+    {"character": character_images[0], "fake_ID": "266470", "real_ID": "266470", "ID": character_id_images[0], "picture": character_profile_pics[0], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID. Something seems off..."},
+    {"character": character_images[1], "fake_ID": "266470", "real_ID": "266470", "ID": character_id_images[0], "picture": character_profile_pics[0], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID. Something seems off..."},
+    {"character": character_images[2], "fake_ID": "266470", "real_ID": "266470", "ID": character_id_images[0], "picture": character_profile_pics[0], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID. Something seems off..."},
+    {"character": character_images[3], "fake_ID": "266470", "real_ID": "266470", "ID": character_id_images[0], "picture": character_profile_pics[0], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID. Something seems off..."},
+    {"character": character_images[4], "fake_ID": "266470", "real_ID": "266470", "ID": character_id_images[0], "picture": character_profile_pics[0], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID. Something seems off..."},
+    {"character": character_images[6], "fake_ID": "266470", "real_ID": "266479", "ID": character_id_images[0], "picture": character_profile_pics[0], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID. Something seems off..."}
 ]
 current_question = random.randint(0, len(character_information) - 1)
 selected_answer = -1
@@ -54,26 +102,28 @@ def draw_text(text, x, y, color=BLACK):
     rendered_text = FONT_TEKO_SEMIBOLD_SMALL.render(text, True, color)
     screen.blit(rendered_text, (x, y))
 
+clickable_areas = {
+    0: pygame.Rect(583, 285, 33, 22),  # Yes
+    1: pygame.Rect(588, 336, 23, 20),  # No
+}
+
+
 # Function to check if a choice is clicked
+
 def check_answer_click(pos):
-    global selected_answer, show_result, show_next_button, score, rounds_played
+    global selected_answer, show_result, show_next_button, rounds_played, score  # Declare as global
 
-    if show_result:
-        return  # Prevent multiple clicks during result display
-
-    character_bottom_left_x, character_bottom_left_y = character_information[current_question]["character"].get_rect(center=(150, 300)).bottomleft
-    choice_x = character_bottom_left_x
-
-    for i, choice in enumerate(character_information[current_question]["choices"]):
-        choice_y = character_bottom_left_y + 100 + i * 50
-        if choice_x <= pos[0] <= choice_x + 200 and choice_y <= pos[1] <= choice_y + 30:
+    for i, rect in clickable_areas.items():
+        if rect.collidepoint(pos):  # Check if click is inside the rectangle
             selected_answer = i
             show_result = True
             show_next_button = True
-
+            rounds_played += 1  
+            #print(f"Click detected in choice {i}")
+            #print(f"Answer is {current_question['answer']}")
+            # Check if the clicked answer is correct
             if selected_answer == character_information[current_question]["answer"]:
                 score += 1
-            rounds_played += 1
 
 
 # Initialize game state
@@ -157,22 +207,16 @@ while running:
             back_button.update(screen)
         
     else:
-        rounds_surface = FONT_TEKO_REGULAR.render(f"Round {rounds_played + 1}",False,'Black').convert_alpha()
-        rounds_rect = rounds_surface.get_rect(center = (WIDTH // 2, 25))
-        screen.blit(rounds_surface,rounds_rect)
-
-        # Draw score
-        #draw_text(f"Score: {score}", 50, 50, BLACK)  # Display score in top-left corner
         score_surface = FONT_TEKO_REGULAR.render(f"Score: {score}",False,'Black').convert_alpha()
-        score_rect = score_surface.get_rect(center = (50, 25))
+        score_rect = score_surface.get_rect(center = (50, 35))
         screen.blit(score_surface,score_rect)
 
         question_data = character_information[current_question]
-        character_rect = question_data["character"].get_rect(center=(300, 550))
-        screen.blit(question_data["character"], character_rect)
+        character_rect = question_data["character"].get_rect(center=(350, 750))
 
-        character_bottom_left_x, character_bottom_left_y = character_rect.bottomleft
-        choice_x = character_bottom_left_x
+        screen.blit(question_data["character"], character_rect)
+        character_center_x, character_center_y = character_rect.center
+        choice_x = character_center_x
 
         character_center_x, character_center_y = character_rect.center
         #draw_text(f"{question_data['ID']}", character_center_x - 40, character_center_y + 25, BLACK)
@@ -181,42 +225,65 @@ while running:
         #draw_text(f"I'm here to deliver your package", 400, 175, BLACK)
 
         character_message = [
-        f"Hello! My ID number is {question_data['Fake ID']}",
-        f"I'm here to deliver your package"]
+        f"Hello! I am {question_data['fake_ID']} and I'm here to deliver your package",
+        f"Here is my identification"]
 
         # Draw instructions box
         # pygame.draw.rect(screen, BLUE, (WIDTH // 2, HEIGHT // 4, 200, 100))  # White background box
 
-        y = 275 # Used to print each line on a separate row
+        pygame.draw.rect(screen, WHITE, (WIDTH // 2 - 10, 585, 500, 65))  # White background box
+        y = 600 # Used to print each line on a separate row
         for line in character_message:
-            text_surface = FONT_TEKO_REGULAR.render(line, True, BLACK)
-            text_rect = text_surface.get_rect(midleft=(450, y))
+            text_surface = FONT_TEKO_LIGHT.render(line, True, BLACK)
+            text_rect = text_surface.get_rect(midleft=(WIDTH // 2, y))
             screen.blit(text_surface, text_rect)
-            y += 50
+            y += 25
 
-        text_surface = FONT_TEKO_REGULAR.render("Are you going to accept this delivery?", True, BLACK)
-        text_rect = text_surface.get_rect(midleft=(character_bottom_left_x, character_bottom_left_y + 50))
+        text_surface = FONT_TEKO_MEDIUM.render("Are you going to accept this delivery?", True, BLACK)
+        text_rect = text_surface.get_rect(center=(WIDTH // 2, HEIGHT // 2 - 250))
         screen.blit(text_surface, text_rect)    
             
         #info_rect = pygame.Rect(400, 300, 375, 160)
         #pygame.draw.rect(screen, BLACK, info_rect)
 
-        #character_id_rect = character_id_images[0].get_rect(topleft=(405, 305))
-        #screen.blit(character_id_images[0], character_id_rect)
+        #question_data = character_information[current_question]
+        #character_id_rect = character_information["ID"].get_rect(center=(405, 305))
+        #screen.blit(character_information["ID"], character_id_rect)
+        question_data = character_information[current_question]  # Get the correct dictionary
+        character_id_rect = question_data["ID"].get_rect(center=(800, 800))  # Now access "ID"
+        screen.blit(question_data["ID"], character_id_rect)  # Use the extracted value
+        question_data2 = character_information[current_question]
+        character_pic_rect = question_data2["picture"].get_rect(center=(690, 825))
+        screen.blit(question_data2["picture"], character_pic_rect)
+
+
         #draw_text(f"ID: {question_data['ID']}", 570, 340, WHITE)
         #draw_text(f"Profession:", 570, 370, WHITE)
         #draw_text(f"{question_data['profession']}", 570, 400, WHITE)
             
         for i, choice in enumerate(question_data["choices"]):
-            color = BLUE if i == selected_answer else BLACK
-            draw_text(f"{i + 1}. {choice}", choice_x, character_bottom_left_y + 100 + i * 50, color)
+            #color = BLUE if i == selected_answer else BLACK
+            #draw_text(f"{choice}", character_center_x + 200, character_center_y - 500 + i * 50, color)
+
+            option_surface = FONT_TEKO_REGULAR.render(f"{choice}", True, BLACK)
+            option_rect = option_surface.get_rect(center=(WIDTH // 2, HEIGHT // 2 - 200 + i * 50))
+            screen.blit(option_surface, option_rect)    
             
             
         if show_result:
             result_text = "Correct!" if selected_answer == question_data["answer"] else f"Wrong! {question_data['explanation']}"
             result_color = GREEN if selected_answer == question_data["answer"] else RED
-            draw_text(result_text, character_bottom_left_x, 900, result_color)
-            draw_text("Click 'Next' to continue", character_bottom_left_x, 950, BLACK)
+
+            result_surface = FONT_TEKO_LIGHT.render(result_text, True, result_color)
+            result_rect = result_surface.get_rect(center=(WIDTH // 2, HEIGHT // 2 - 100))
+            screen.blit(result_surface, result_rect)   
+
+            text_surface = FONT_TEKO_LIGHT.render("Click to continue", True, BLACK)
+            text_rect = text_surface.get_rect(center=(WIDTH // 2, HEIGHT // 2 - 75))
+            screen.blit(text_surface, text_rect)  
+
+            #draw_text(result_text, character_center_x, 900, result_color)
+            #draw_text("Press any key to continue", character_center_x, 950, BLACK)
             
     
     pygame.display.flip()
@@ -225,6 +292,8 @@ while running:
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
+                x, y = pygame.mouse.get_pos()
+                print(f"Clicked at: ({x}, {y})")
                 if show_next_button and rounds_played < max_rounds:
                     current_question = random.randint(0, len(character_information) - 1)
                     selected_answer = -1

@@ -5,22 +5,28 @@ from settings import WIDTH, HEIGHT, BLUE, BLACK, WHITE, GREEN, RED, FONT_TEKO_BO
 pygame.init()
 
 def start_painting_classification(screen):
-    from minigames.painting_classification import painting_classification
+    if 'minigames.painting_classification' not in sys.modules:
+        from minigames.painting_classification import painting_classification
+
     painting_classification(screen)
 
 def start_identity_verification(screen):
-    from minigames.identity_verification import identity_verification
+    if 'minigames.identity_verification' not in sys.modules:
+        from minigames.identity_verification import identity_verification
+
     identity_verification(screen)
 
 def start_key_change(screen):
-    from minigames.key_change import key_change
+    if 'minigames.key_change' not in sys.modules:
+        from minigames.key_change import key_change
+
     key_change(screen)
 
 def start_seek_and_find(screen):
     from minigames.seek_and_find import seek_and_find
     seek_and_find(screen)
 
-background_image = pygame.image.load("assets/game_menu.png")  # CHANGED
+background_image = pygame.image.load("assets/main_background.png")  # CHANGED
 
 def game_menu(screen):
     while True:

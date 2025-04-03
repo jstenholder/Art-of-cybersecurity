@@ -7,7 +7,7 @@ from settings import WIDTH, HEIGHT, BLUE, BLACK, WHITE, GREEN, RED
 pygame.init()
 
 # Load background image
-BG = pygame.image.load("assets/main_menu.png")
+BG = pygame.image.load("assets/main_background.png")
 
 def main_menu(screen):
     while True:
@@ -17,9 +17,9 @@ def main_menu(screen):
         #MENU_TEXT = FONT_TEKO_BOLD.render("THE ART OF CYBERSECURITY", True, "#b68f40")
         #MENU_RECT = MENU_TEXT.get_rect(center=(WIDTH // 2, 150))
 
-        PLAY_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(WIDTH // 2, 500), 
+        PLAY_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(WIDTH // 2, 550), 
                             text_input="PLAY", font=FONT_TEKO_SEMIBOLD, base_color=WHITE, hovering_color=BLUE)
-        QUIT_BUTTON = Button(image=pygame.image.load("assets/Quit Rect.png"), pos=(WIDTH // 2, 700), 
+        QUIT_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(WIDTH // 2, 700), 
                              text_input="QUIT", font=FONT_TEKO_SEMIBOLD, base_color=WHITE, hovering_color=BLUE)
 
         #screen.blit(MENU_TEXT, MENU_RECT)
