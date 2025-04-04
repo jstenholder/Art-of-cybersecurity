@@ -1,3 +1,18 @@
+"""
+Author: Jennifer Tenholder
+Course: CS/PUBP/ECE-6727 - Cyber Security Practicum
+Institution: Georgia Institute of Technology
+Date: 2025-04-04
+
+Project Name: The Gameification of Cybersecurity Awareness
+"""
+
+"""
+This code is based on code written by baraltech
+Source: https://github.com/baraltech/Menu-System-PyGame
+No licensing or use requirements were specified 
+"""
+
 class Button():
 	def __init__(self, image, pos, text_input, font, base_color, hovering_color):
 		self.image = image
