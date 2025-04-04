@@ -70,7 +70,7 @@ def game_menu(screen):
         '''
         pygame.draw.rect(screen, WHITE, (635, 310, 330, 275))
 
-        identity_verification_surface = pygame.image.load('assets/icon_identity_verification').convert_alpha()
+        identity_verification_surface = pygame.image.load('assets/icon_identity_verification.png').convert_alpha()
         identity_verification_rect = identity_verification_surface.get_rect(center = (WIDTH / 2 + 200, HEIGHT / 6 + 300))
         screen.blit(identity_verification_surface,identity_verification_rect)
 
