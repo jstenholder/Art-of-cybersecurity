@@ -118,7 +118,7 @@ def game_menu(screen):
                              base_color="Black", hovering_color="Blue")
 
         '''Adds a back button which can be used to navigate back to the main menu'''
-        back_button = Button(image=None, pos=(WIDTH - 150, HEIGHT - 75), 
+        back_button = Button(image=None, pos=(WIDTH - 100, HEIGHT - 50), 
                              text_input="BACK", font=FONT_TEKO_BOLD_SMALL, 
                              base_color="Black", hovering_color="Blue")
 

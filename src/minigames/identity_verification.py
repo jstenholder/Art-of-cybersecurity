@@ -213,10 +213,10 @@ global IDENTITY_VERIFICATION_MOUSE_POS
 IDENTITY_VERIFICATION_MOUSE_POS = pygame.mouse.get_pos()
 
 global back_button, next_button
-back_button = Button(image=None, pos=(WIDTH - 150, HEIGHT - 75), text_input="BACK", font=FONT_TEKO_SEMIBOLD_SMALL, base_color="Green", hovering_color="Red")
+back_button = Button(image=None, pos=(WIDTH - 100, HEIGHT - 50), text_input="BACK", font=FONT_TEKO_BOLD_SMALL, base_color=BLACK, hovering_color=BLUE)
 back_button.changeColor(IDENTITY_VERIFICATION_MOUSE_POS)
 
-next_button = Button(image=None, pos=(WIDTH - 150, HEIGHT - 75), text_input="NEXT", font=FONT_TEKO_BOLD_SMALL, base_color=BLACK, hovering_color=BLUE)
+next_button = Button(image=None, pos=(WIDTH - 100, HEIGHT - 50), text_input="NEXT", font=FONT_TEKO_BOLD_SMALL, base_color=BLACK, hovering_color=BLUE)
 next_button.changeColor(IDENTITY_VERIFICATION_MOUSE_POS)
 
 '''
@@ -228,11 +228,18 @@ User can close out of it by clicking anywhere or hitting any key
 def show_instructions():
     instruction_text = [
         "Welcome to Identity Verification Minigame!",
-        "Instructions:",
-        "- You will be shown a delivery droid",
-        "- Based on what they are delivering and if their identity is valid, you can accept or deny them access",
-        "- Select 'yes' or 'no to submit your answer.",
-        "- You have 5 rounds to play. Good luck!",
+        "",
+        "In this game you, will be helping security process incoming packages",
+        "In order to protect the museum, you need verify the droids make deliveries",
+        "Because of the value of our pieces, criminals will try to break in and steal/damange them",
+        "They've been known to send suspicious package containing strange items, or even pretend to",
+        "be someone they are not",
+        "You need to decide whether to accept each droids delivery or not by making sure they ",
+        "are who they say they are",
+        "If you're even a little suspicious, it's better to be safe than sorry",
+        "",
+        "Good luck!",
+        "",
         "Press any key to continue..."
     ]
 
@@ -243,10 +250,10 @@ def show_instructions():
 
         y = 250
         for line in instruction_text:
-            text_surface = FONT_TEKO_REGULAR.render(line, True, BLACK)
+            text_surface = FONT_TEKO_LIGHT.render(line, True, BLACK)
             text_rect = text_surface.get_rect(center=(WIDTH // 2, y))
             screen.blit(text_surface, text_rect) 
-            y += 50 # Stars at y = 250, but adds 50 to the y value each time to draw text on a separate line
+            y += 35 # Stars at y = 250, but adds 50 to the y value each time to draw text on a separate line
 
         pygame.display.flip()
 
@@ -328,7 +335,7 @@ def identity_verification(screen):
                 screen.blit(results_surface3, results_rect3)
 
                 back_button.update(screen) # Shows the back button
-                
+
             else: # If the user did not get a perfect score, show them this message  
                 pygame.draw.rect(screen, WHITE, (300, 400, 600, 200))
                 results_surface2 = FONT_TEKO_MEDIUM.render("Great job keeping the museum safe!",False,'Black').convert_alpha()
@@ -384,8 +391,8 @@ def identity_verification(screen):
                 screen.blit(option_surface, option_rect)    
             
             '''Display the score in the top left corner'''
-            score_surface = FONT_TEKO_REGULAR.render(f"Score: {score}",False,'Black').convert_alpha()
-            score_rect = score_surface.get_rect(center = (50, 35))
+            score_surface = FONT_TEKO_LIGHT.render(f"Score: {score}",False,'Black').convert_alpha()
+            score_rect = score_surface.get_rect(center = (55, 35))
             screen.blit(score_surface,score_rect)
                 
             '''Checks if the answer is correct and displays the results'''    

@@ -132,10 +132,10 @@ global KEY_CHANGE_MOUSE_POS
 KEY_CHANGE_MOUSE_POS = pygame.mouse.get_pos()
 
 global back_button, next_button
-back_button = Button(image=None, pos=(WIDTH - 150, HEIGHT - 75), text_input="BACK", font=FONT_TEKO_SEMIBOLD_SMALL, base_color="Green", hovering_color="Red")
+back_button = Button(image=None, pos=(WIDTH - 100, HEIGHT - 50), text_input="BACK", font=FONT_TEKO_BOLD_SMALL, base_color=BLACK, hovering_color=BLUE)
 back_button.changeColor(KEY_CHANGE_MOUSE_POS)
 
-next_button = Button(image=None, pos=(WIDTH - 150, HEIGHT - 75), text_input="NEXT", font=FONT_TEKO_BOLD_SMALL, base_color=BLACK, hovering_color=BLUE)
+next_button = Button(image=None, pos=(WIDTH - 100, HEIGHT - 50), text_input="NEXT", font=FONT_TEKO_BOLD_SMALL, base_color=BLACK, hovering_color=BLUE)
 next_button.changeColor(KEY_CHANGE_MOUSE_POS)
 
 '''
@@ -148,13 +148,17 @@ def show_instructions():
     """Display instructions and wait for user input to proceed."""
     instruction_text = [
         "Welcome to Key Change Minigame!",
-        "As part of the security procedures, we need to go around and change some keys on exhibits",
-        "Instructions:",
-        "- For each of the exhibits, select a new secure key",
-        "- Secure keys must meet the following criteria",
-        "  - The key must have all three groove types",
-        "  - The key cannot have more than two of the same grooves in a row",
-        "  - The key must have at least fourteen notches",
+        "",
+        "As part of the security procedures, we need to change some keys on exhibits",
+        "The most secure keys have the most notches, making them harder to guess and replicate",
+        "With a copy of the keys, a criminal could take control of the exhibit and steal things",
+        "So length is very important",
+        "Keys also must have all three groove types and cannot have more than two of the same in a row",
+        "Doing so would make them less complex, which isn't good",
+        "So make sure all keys have at least fourteen notches and their patterns are complex",
+        "",
+        "Good luck",
+        "",
         "Press any key to continue..."
     ]
 
@@ -166,12 +170,12 @@ def show_instructions():
         pygame.draw.rect(screen, BLACK, (200, 200, 800, 600), 3)  # Black outline
 
         # Render instructions text
-        y = 250
+        y = 300
         for line in instruction_text:
-            text_surface = FONT_TEKO_REGULAR.render(line, True, BLACK)
+            text_surface = FONT_TEKO_LIGHT.render(line, True, BLACK)
             text_rect = text_surface.get_rect(center=(WIDTH // 2, y))
             screen.blit(text_surface, text_rect)
-            y += 50
+            y += 35
 
         pygame.display.flip()
 
@@ -310,21 +314,21 @@ def key_change(screen):
                 key_positions.append((key_rect, key))
             
             '''Display the score in the top left corner'''
-            score_surface = FONT_TEKO_REGULAR.render(f"Score: {score}",False,'Black').convert_alpha()
+            score_surface = FONT_TEKO_LIGHT.render(f"Score: {score}", False, BLACK).convert_alpha()
             score_rect = score_surface.get_rect(center = (50, 50))
             screen.blit(score_surface,score_rect)
 
             if show_result:
                 if selected_answer == 0:
-                    correct_surface = FONT_TEKO_SEMIBOLD_SMALL.render(message,False,'Green').convert_alpha()
+                    correct_surface = FONT_TEKO_REGULAR.render(message,False, GREEN).convert_alpha()
                     correct_rect = correct_surface.get_rect(center = (WIDTH // 2, HEIGHT - 100))
                     screen.blit(correct_surface,correct_rect)
                 else:
-                    correct_surface = FONT_TEKO_SEMIBOLD_SMALL.render(message,False,'Red').convert_alpha()
+                    correct_surface = FONT_TEKO_REGULAR.render(message,False, RED).convert_alpha()
                     correct_rect = correct_surface.get_rect(center = (WIDTH // 2, HEIGHT - 100))
                     screen.blit(correct_surface,correct_rect)
 
-                next_surface = FONT_TEKO_SEMIBOLD_SMALL.render("Click 'Next' to continue",False,'Black').convert_alpha()
+                next_surface = FONT_TEKO_REGULAR.render("Click 'Next' to continue",False,'Black').convert_alpha()
                 next_rect = next_surface.get_rect(center = (WIDTH // 2, HEIGHT - 50))
                 screen.blit(next_surface,next_rect)
 

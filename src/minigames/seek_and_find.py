@@ -78,7 +78,7 @@ current_item = 0
 items_found = 0
 hidden_items_found = 0
 
-back_button = Button(image=None, pos=(WIDTH - 60, HEIGHT - 40), text_input="BACK", font=FONT_TEKO_SEMIBOLD_SMALL, base_color="Green", hovering_color="Red")
+back_button = Button(image=None, pos=(WIDTH - 100, HEIGHT - 50), text_input="BACK", font=FONT_TEKO_SEMIBOLD_SMALL, base_color=BLACK, hovering_color=BLUE)
 
 '''
 Displays and instructions page
@@ -90,12 +90,14 @@ def show_instructions():
     """Display instructions and wait for user input to proceed."""
     instruction_text = [
         "Welcome to the Seek and Find Minigame!",
-        "You need to help your fellow employees find things they've lost",
-        "Instructions:",
-        "- You will be scene from somewhere in the museum",
-        "- The employee will tell you  what they've lost",
-        "- Search the scene to help them find their missing items",
-        "- As a security champion for the museum, be sure to report any un-safe security practices you find",
+        "",
+        "One of your fellow employees asks you to go to their desk to look for some things they've lost",
+        "Search the scene to help them find their missing items",
+        "As a security champion for the museum, report any unsafe security practices you find",
+        "We've also been seeing some suspiciouis activities lately so keep your eye out for those",
+        "",
+        "Good luck",
+        "",
         "Press any key to continue..."
     ]
 
@@ -104,12 +106,12 @@ def show_instructions():
         pygame.draw.rect(screen, WHITE, (200, 200, 800, 600))  # White background box
         pygame.draw.rect(screen, BLACK, (200, 200, 800, 600), 3)  # Black outline
 
-        y = 250
+        y = 350
         for line in instruction_text:
-            text_surface = FONT_TEKO_REGULAR.render(line, True, BLACK)
+            text_surface = FONT_TEKO_LIGHT.render(line, True, BLACK)
             text_rect = text_surface.get_rect(center=(WIDTH // 2, y))
             screen.blit(text_surface, text_rect)
-            y += 50 # Stars at y = 250, but adds 50 to the y value each time to draw text on a separate line
+            y += 35 # Stars at y = 250, but adds 50 to the y value each time to draw text on a separate line
 
         pygame.display.flip()
 

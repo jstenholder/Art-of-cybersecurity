@@ -145,10 +145,10 @@ global PAINTING_CLASSIFICATION_MOUSE_POS
 PAINTING_CLASSIFICATION_MOUSE_POS = pygame.mouse.get_pos()
 
 global back_button, next_button
-back_button = Button(image=None, pos=(WIDTH - 150, HEIGHT - 75), text_input="BACK", font=FONT_TEKO_BOLD_SMALL, base_color=BLACK, hovering_color=BLUE)
+back_button = Button(image=None, pos=(WIDTH - 100, HEIGHT - 50), text_input="BACK", font=FONT_TEKO_BOLD_SMALL, base_color=BLACK, hovering_color=BLUE)
 back_button.changeColor(PAINTING_CLASSIFICATION_MOUSE_POS)
 
-next_button = Button(image=None, pos=(WIDTH - 150, HEIGHT - 75), text_input="NEXT", font=FONT_TEKO_BOLD_SMALL, base_color=BLACK, hovering_color=BLUE)
+next_button = Button(image=None, pos=(WIDTH - 100, HEIGHT - 50), text_input="NEXT", font=FONT_TEKO_BOLD_SMALL, base_color=BLACK, hovering_color=BLUE)
 next_button.changeColor(PAINTING_CLASSIFICATION_MOUSE_POS)
 
 '''
@@ -160,11 +160,19 @@ User can close out of it by clicking anywhere or hitting any key
 def show_instructions():
     instruction_text = [
         "Welcome to Painting Classification Minigame!",
-        "Instructions:",
-        "- You will be shown a painting and details about it.",
-        "- Select the correct level based on the painting's value.",
-        "- Click on the level to submit your answer.",
-        "- You have 5 rounds to play. Good luck!",
+        "",
+        "In this game, you will be classifying these incoming paintings into different rooms",
+        "Companies often store data in different categories for security purposes",
+        "This helps them prevent data breaches by making sure only those who need",
+        "to access something can access it", 
+        "At the museum, value is determined by age",
+        "The more valuable something is, the more security it needs",
+        "",
+        "Keep yout eye out - Per museum regulations, some paintings need to be stored",
+        "in higher levels",
+        "",
+        "Good luck!",
+        "",
         "Press any key to continue..."
     ]
 
@@ -175,10 +183,10 @@ def show_instructions():
 
         y = 250
         for line in instruction_text:
-            text_surface = FONT_TEKO_REGULAR.render(line, True, BLACK)
+            text_surface = FONT_TEKO_LIGHT.render(line, True, BLACK)
             text_rect = text_surface.get_rect(center=(WIDTH // 2, y))
             screen.blit(text_surface, text_rect)
-            y += 50 # Stars at y = 250, but adds 50 to the y value each time to draw text on a separate line
+            y += 35 # Stars at y = 250, but adds 50 to the y value each time to draw text on a separate line
 
         pygame.display.flip()
 
@@ -284,23 +292,28 @@ def painting_classification(screen):
             f"Age: {question_data['age']} years",
             ]
 
-            pygame.draw.rect(screen, WHITE, (WIDTH // 2 - 100 , 675, 400, 150))
+            pygame.draw.rect(screen, WHITE, (WIDTH // 2 - 250 , 875, 300, 100))
 
-            y = 725
+            y = 910
             for line in painting_metadata:
                 text_surface = FONT_TEKO_LIGHT.render(line, True, BLACK)
-                text_rect = text_surface.get_rect(midleft=(WIDTH // 2 - 50, y))
+                text_rect = text_surface.get_rect(midleft=(WIDTH // 2 - 225, y))
                 screen.blit(text_surface, text_rect)
-                y += 50 # print each item in painting_metadata on a separate line
+                y += 35 # print each item in painting_metadata on a separate line
 
             '''Display the user prompt'''
             question_surface = FONT_TEKO_REGULAR.render("Where does this belong?",False, BLACK).convert_alpha()
-            question_rect = question_surface.get_rect(center = (WIDTH // 2 + 25 , 600))
+            question_rect = question_surface.get_rect(center = (WIDTH // 2, 100))
             screen.blit(question_surface,question_rect)
 
+            '''Display decision matrix'''
+            decision_matrix = pygame.image.load("assets/Adobe Express - file (5).png")
+            decision_matrix_rect = decision_matrix.get_rect(center=(1000, 775))
+            screen.blit(decision_matrix, decision_matrix_rect)
+
             '''Display the score in the top left corner'''
-            score_surface = FONT_TEKO_REGULAR.render(f"Score: {score}",False, BLACK).convert_alpha()
-            score_rect = score_surface.get_rect(center = (50, 25))
+            score_surface = FONT_TEKO_LIGHT.render(f"Score: {score}",False, BLACK).convert_alpha()
+            score_rect = score_surface.get_rect(center = (60, 25))
             screen.blit(score_surface,score_rect)
 
             '''Checks if the answer is correct and displays the results'''
@@ -312,7 +325,7 @@ def painting_classification(screen):
                     result_text = "Incorrect!"
 
                 result_surface = FONT_TEKO_REGULAR.render(result_text, False, RED if selected_answer != correct_answer else GREEN).convert_alpha()
-                result_rect = question_surface.get_rect(center = (WIDTH // 2 + 30, 900))
+                result_rect = question_surface.get_rect(center = (WIDTH // 2 + 70, 150))
                 screen.blit(result_surface,result_rect)
 
             '''Displays the next button to procceed to the next round'''
