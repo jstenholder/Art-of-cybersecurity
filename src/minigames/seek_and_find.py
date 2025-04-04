@@ -10,7 +10,7 @@ pygame.init()
 
 # Screen setup
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Seek and Find Game")
+pygame.display.set_caption("Museum Mayhem")
 
 # Load background image
 background = pygame.image.load("assets/seek_and_find.png")  # Replace with your image file

@@ -9,7 +9,7 @@ pygame.init()
 
 # Set up display
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Painting Classification Minigame")
+pygame.display.set_caption("Confidential Collection")
 #screen.fill(BLACK)
 
 background_image = pygame.image.load("assets/painting_classification_background_new.png")  # CHANGED

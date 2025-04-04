@@ -8,9 +8,7 @@ pygame.init()
 
 # Set up display
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Key Change Minigame")
-
-background_image = pygame.image.load("assets/key_change_cropped.png")  # CHANGED
+pygame.display.set_caption("The Key to Security")
 
 # Load images
 key_images = [
@@ -59,6 +57,15 @@ key_information = [
     {"image": key_images[19], "choices": ["Secure", "Insecure"], "answer": 0, "explanation": "Looks good to me! Good job!"}
 ]
 
+background_images = [
+    pygame.image.load("assets/diamond_and_asteroid.png"),
+    pygame.image.load("assets/asteroid_and_shell_fossil.png"),
+    pygame.image.load("assets/shell_fossil_and_sword.png"),
+    pygame.image.load("assets/diamond_and_map.png"),
+    pygame.image.load("assets/map_and_vase.png"),
+    pygame.image.load("assets/vase_and_fish_fossil.png")
+]
+
 # Game state
 global KEY_CHANGE_MOUSE_POS
 KEY_CHANGE_MOUSE_POS = pygame.mouse.get_pos()
@@ -92,6 +99,8 @@ def select_new_keys():
 select_new_keys()
 
 # Function to check if a key is clicked
+
+
 def check_key_click(pos):
     global selected_answer, show_result, show_next_button, rounds_played, message, score  # Used to access the global variables
 
@@ -100,6 +109,7 @@ def check_key_click(pos):
             selected_answer = key["answer"]
             show_result = True
             show_next_button = True
+
             if selected_answer == 0:
                 message = key["explanation"]
                 score += 1
@@ -158,46 +168,48 @@ while running:
     
     KEY_CHANGE_MOUSE_POS = pygame.mouse.get_pos()
     
-    screen.blit(background_image, (0, 0))  # CHANGED
+    # CHANGED: Choose background image based on rounds played (changes every 2 rounds)
+    background_index = (rounds_played // 2) % len(background_images)
+    screen.blit(background_images[background_index], (0, 0))
 
     if rounds_played >= max_rounds:
 
-        if score < 7:
-            
-            results_surface2 = FONT_TEKO_MEDIUM.render("Definitely not as secure as we typically want to be...Hope no ones tries to break in...",False,'Black').convert_alpha()
+        if score < 5:
+            pygame.draw.rect(screen, WHITE, (250, 400, 700, 200))  # White background box
+            results_surface2 = FONT_TEKO_MEDIUM.render("Definitely not as secure as we typically want to be...",False,'Black').convert_alpha()
             results_rect2 = results_surface2.get_rect(center = (WIDTH // 2, HEIGHT // 2))
             screen.blit(results_surface2,results_rect2)
 
-            results_surface1 = FONT_TEKO_MEDIUM.render("You've successfully changed all the keys", False, 'Black').convert_alpha()
+            results_surface1 = FONT_TEKO_MEDIUM.render("You've changed all the keys", False, 'Black').convert_alpha()
             results_rect1 = results_surface1.get_rect(center=(WIDTH // 2, results_rect2.centery - 50))
             screen.blit(results_surface1, results_rect1)
 
-            results_surface3 = FONT_TEKO_BOLD_SMALL.render(f"Final Score: {score} / {max_rounds}", False, 'Black').convert_alpha()
+            results_surface3 = FONT_TEKO_BOLD_SMALL.render(f"Final Score: {score} / {int(max_rounds / 2)}", False, 'Black').convert_alpha()
             results_rect3 = results_surface3.get_rect(center=(WIDTH // 2, results_rect2.centery + 50))
             screen.blit(results_surface3, results_rect3)
 
             back_button.update(screen)
 
         else:
-            
+            pygame.draw.rect(screen, WHITE, (250, 400, 700, 200))  # White background box
             results_surface2 = FONT_TEKO_MEDIUM.render("Great job keeping the museum safe!",False,'Black').convert_alpha()
             results_rect2 = results_surface2.get_rect(center = (WIDTH // 2, HEIGHT // 2))
             screen.blit(results_surface2,results_rect2)
 
-            results_surface1 = FONT_TEKO_MEDIUM.render("You've successfully changed all the keys", False, 'Black').convert_alpha()
+            results_surface1 = FONT_TEKO_MEDIUM.render("You've changed all the keys", False, 'Black').convert_alpha()
             results_rect1 = results_surface1.get_rect(center=(WIDTH // 2, results_rect2.centery - 50))
             screen.blit(results_surface1, results_rect1)
 
-            results_surface3 = FONT_TEKO_BOLD_SMALL.render(f"Final Score: {score} / {max_rounds}", False, 'Black').convert_alpha()
+            results_surface3 = FONT_TEKO_BOLD_SMALL.render(f"Final Score: {score} / {int(max_rounds / 2)}", False, 'Black').convert_alpha()
             results_rect3 = results_surface3.get_rect(center=(WIDTH // 2, results_rect2.centery + 50))
             screen.blit(results_surface3, results_rect3)
             
             back_button.update(screen)
 
     else:
-        rounds_surface = FONT_TEKO_REGULAR.render(f"Round {rounds_played + 1}",False,'Black').convert_alpha()
-        rounds_rect = rounds_surface.get_rect(center = (WIDTH // 2, 50))
-        screen.blit(rounds_surface,rounds_rect)
+        #rounds_surface = FONT_TEKO_REGULAR.render(f"Round {rounds_played + 1}",False,'Black').convert_alpha()
+        #rounds_rect = rounds_surface.get_rect(center = (WIDTH // 2, 50))
+        #screen.blit(rounds_surface,rounds_rect)
 
         # Draw score
         #draw_text(f"Score: {score}", 50, 50, BLACK)  # Display score in top-left corner
@@ -205,7 +217,7 @@ while running:
         score_rect = score_surface.get_rect(center = (50, 50))
         screen.blit(score_surface,score_rect)
         
-        prompt_surface = FONT_TEKO_MEDIUM.render("Select a secure key for this exhibit",False,'Black').convert_alpha()
+        prompt_surface = FONT_TEKO_MEDIUM.render("Select a secure key for these two exhibits",False,'Black').convert_alpha()
         prompt_rect = prompt_surface.get_rect(center = (WIDTH // 2, 100))
         screen.blit(prompt_surface,prompt_rect)
 
@@ -239,11 +251,17 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         elif event.type == pygame.MOUSEBUTTONDOWN:
+            #if show_next_button and rounds_played < max_rounds:
             if show_next_button and rounds_played < max_rounds:
-                select_new_keys()
-                selected_answer = -1
-                show_result = False
-                show_next_button = False
+                #select_new_keys()
+                #selected_answer = -1
+                #show_result = False
+                #show_next_button = False
+
+                rounds_played += 1  # Increment when "Next" is pressed
+                show_result = False  # Hide previous results
+                show_next_button = False  # Hide the next button
+                select_new_keys()  # Select new keys
 
             if back_button.checkForInput(KEY_CHANGE_MOUSE_POS):
                 from game import game_menu

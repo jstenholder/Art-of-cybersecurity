@@ -7,7 +7,7 @@ from settings import WIDTH, HEIGHT, BLUE, BLACK, WHITE, GREEN, RED
 pygame.init()
 
 # Load background image
-BG = pygame.image.load("assets/main_background.png")
+BG = pygame.image.load("assets/game_background_again.png")
 
 def main_menu(screen):
     while True:

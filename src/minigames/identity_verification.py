@@ -8,7 +8,7 @@ pygame.init()
 
 # Set up display
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Identity Classification Minigame")
+pygame.display.set_caption("Suspicious Shipments")
 
 background_image = pygame.image.load("assets/identity_verification_background_new.png")  # CHANGED
 
@@ -326,7 +326,6 @@ while running:
             option_surface = FONT_TEKO_REGULAR.render(f"{choice}", True, BLACK)
             option_rect = option_surface.get_rect(center=(WIDTH // 2, HEIGHT // 2 - 200 + i * 50))
             screen.blit(option_surface, option_rect)    
-            
             
         if show_result:
             result_text = "Correct!" if selected_answer == question_data["answer"] else f"Wrong! {question_data['explanation']}"
