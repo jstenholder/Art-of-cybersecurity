@@ -65,23 +65,80 @@ character_id_images = [
 
 character_profile_pics = [
     pygame.image.load("assets/blue_profile_pic_again.png"),
-    pygame.image.load("assets/green_profile_pic.png"),
-    pygame.image.load("assets/pink_profile_pic.png"),
-    pygame.image.load("assets/purple_profile_pic.png"),
-    pygame.image.load("assets/teal_profile_pic.png")
+    pygame.image.load("assets/green_profile_pic_again.png"),
+    pygame.image.load("assets/pink_profile_pic_again.png"),
+    pygame.image.load("assets/purple_profile_pic_again.png"),
+    pygame.image.load("assets/teal_profile_pic_again.png")
 ]
 
 character_information = [
     
     # real blue
     {"character": character_images[5], "fake_ID": "266470", "real_ID": "266470", "ID": character_id_images[0], "picture": character_profile_pics[0], "choices": ["Yes", "No"], "answer": 0, "explanation": "Everything seems legitimate. Don't keep them waiting!"},
+    {"character": character_images[5], "fake_ID": "266470", "real_ID": "266470", "ID": character_id_images[0], "picture": character_profile_pics[0], "choices": ["Yes", "No"], "answer": 0, "explanation": "Everything seems legitimate. Don't keep them waiting!"},
+    {"character": character_images[5], "fake_ID": "266470", "real_ID": "266470", "ID": character_id_images[0], "picture": character_profile_pics[0], "choices": ["Yes", "No"], "answer": 0, "explanation": "Everything seems legitimate. Don't keep them waiting!"},
+    {"character": character_images[5], "fake_ID": "266470", "real_ID": "266470", "ID": character_id_images[0], "picture": character_profile_pics[0], "choices": ["Yes", "No"], "answer": 0, "explanation": "Everything seems legitimate. Don't keep them waiting!"},
     # fake blue
-    {"character": character_images[0], "fake_ID": "266470", "real_ID": "266470", "ID": character_id_images[0], "picture": character_profile_pics[0], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID. Something seems off..."},
-    {"character": character_images[1], "fake_ID": "266470", "real_ID": "266470", "ID": character_id_images[0], "picture": character_profile_pics[0], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID. Something seems off..."},
-    {"character": character_images[2], "fake_ID": "266470", "real_ID": "266470", "ID": character_id_images[0], "picture": character_profile_pics[0], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID. Something seems off..."},
-    {"character": character_images[3], "fake_ID": "266470", "real_ID": "266470", "ID": character_id_images[0], "picture": character_profile_pics[0], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID. Something seems off..."},
-    {"character": character_images[4], "fake_ID": "266470", "real_ID": "266470", "ID": character_id_images[0], "picture": character_profile_pics[0], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID. Something seems off..."},
-    {"character": character_images[6], "fake_ID": "266470", "real_ID": "266479", "ID": character_id_images[0], "picture": character_profile_pics[0], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID. Something seems off..."}
+    {"character": character_images[0], "fake_ID": "266470", "real_ID": "266470", "ID": character_id_images[0], "picture": character_profile_pics[0], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID photo. Something seems off..."},
+    {"character": character_images[1], "fake_ID": "266470", "real_ID": "266470", "ID": character_id_images[0], "picture": character_profile_pics[0], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID photo. Something seems off..."},
+    {"character": character_images[2], "fake_ID": "266470", "real_ID": "266470", "ID": character_id_images[0], "picture": character_profile_pics[0], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID photo. Something seems off..."},
+    {"character": character_images[3], "fake_ID": "266470", "real_ID": "266470", "ID": character_id_images[0], "picture": character_profile_pics[0], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID photo. Something seems off..."},
+    {"character": character_images[4], "fake_ID": "266470", "real_ID": "266470", "ID": character_id_images[0], "picture": character_profile_pics[0], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID photo. Something seems off..."},
+    {"character": character_images[6], "fake_ID": "266470", "real_ID": "266479", "ID": character_id_images[0], "picture": character_profile_pics[0], "choices": ["Yes", "No"], "answer": 1, "explanation": "I don't think they are who they claim to be..."},
+
+    # real green
+    {"character": character_images[12], "fake_ID": "206079", "real_ID": "206079", "ID": character_id_images[1], "picture": character_profile_pics[1], "choices": ["Yes", "No"], "answer": 0, "explanation": "Everything seems legitimate. Don't keep them waiting!"},
+    {"character": character_images[12], "fake_ID": "206079", "real_ID": "206079", "ID": character_id_images[1], "picture": character_profile_pics[1], "choices": ["Yes", "No"], "answer": 0, "explanation": "Everything seems legitimate. Don't keep them waiting!"},
+    {"character": character_images[12], "fake_ID": "206079", "real_ID": "206079", "ID": character_id_images[1], "picture": character_profile_pics[1], "choices": ["Yes", "No"], "answer": 0, "explanation": "Everything seems legitimate. Don't keep them waiting!"},
+    {"character": character_images[12], "fake_ID": "206079", "real_ID": "206079", "ID": character_id_images[1], "picture": character_profile_pics[1], "choices": ["Yes", "No"], "answer": 0, "explanation": "Everything seems legitimate. Don't keep them waiting!"},
+    # fake green
+    {"character": character_images[7], "fake_ID": "206079", "real_ID": "206079", "ID": character_id_images[1], "picture": character_profile_pics[1], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID photo. Something seems off..."},
+    {"character": character_images[8], "fake_ID": "206079", "real_ID": "206079", "ID": character_id_images[1], "picture": character_profile_pics[1], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID photo. Something seems off..."},
+    {"character": character_images[9], "fake_ID": "206079", "real_ID": "206079", "ID": character_id_images[1], "picture": character_profile_pics[1], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID photo. Something seems off..."},
+    {"character": character_images[10], "fake_ID": "206079", "real_ID": "206079", "ID": character_id_images[1], "picture": character_profile_pics[1], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID photo. Something seems off..."},
+    {"character": character_images[11], "fake_ID": "206079", "real_ID": "206079", "ID": character_id_images[1], "picture": character_profile_pics[1], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID photo. Something seems off..."},
+    {"character": character_images[13], "fake_ID": "206079", "real_ID": "206070", "ID": character_id_images[1], "picture": character_profile_pics[1], "choices": ["Yes", "No"], "answer": 1, "explanation": "I don't think they are who they claim to be..."},
+
+    # real pink
+    {"character": character_images[19], "fake_ID": "374870", "real_ID": "374870", "ID": character_id_images[2], "picture": character_profile_pics[2], "choices": ["Yes", "No"], "answer": 0, "explanation": "Everything seems legitimate. Don't keep them waiting!"},
+    {"character": character_images[19], "fake_ID": "374870", "real_ID": "374870", "ID": character_id_images[2], "picture": character_profile_pics[2], "choices": ["Yes", "No"], "answer": 0, "explanation": "Everything seems legitimate. Don't keep them waiting!"},
+    {"character": character_images[19], "fake_ID": "374870", "real_ID": "374870", "ID": character_id_images[2], "picture": character_profile_pics[2], "choices": ["Yes", "No"], "answer": 0, "explanation": "Everything seems legitimate. Don't keep them waiting!"},
+    {"character": character_images[19], "fake_ID": "374870", "real_ID": "374870", "ID": character_id_images[2], "picture": character_profile_pics[2], "choices": ["Yes", "No"], "answer": 0, "explanation": "Everything seems legitimate. Don't keep them waiting!"},
+    # fake pink
+    {"character": character_images[14], "fake_ID": "374870", "real_ID": "374870", "ID": character_id_images[2], "picture": character_profile_pics[2], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID photo. Something seems off..."},
+    {"character": character_images[15], "fake_ID": "374870", "real_ID": "374870", "ID": character_id_images[2], "picture": character_profile_pics[2], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID photo. Something seems off..."},
+    {"character": character_images[16], "fake_ID": "374870", "real_ID": "374870", "ID": character_id_images[2], "picture": character_profile_pics[2], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID photo. Something seems off..."},
+    {"character": character_images[17], "fake_ID": "374870", "real_ID": "374870", "ID": character_id_images[2], "picture": character_profile_pics[2], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID photo. Something seems off..."},
+    {"character": character_images[18], "fake_ID": "374870", "real_ID": "374870", "ID": character_id_images[2], "picture": character_profile_pics[2], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID photo. Something seems off..."},
+    {"character": character_images[20], "fake_ID": "374870", "real_ID": "374780", "ID": character_id_images[2], "picture": character_profile_pics[2], "choices": ["Yes", "No"], "answer": 1, "explanation": "I don't think they are who they claim to be..."},
+
+    # real purple
+    {"character": character_images[26], "fake_ID": "683893", "real_ID": "683893", "ID": character_id_images[3], "picture": character_profile_pics[3], "choices": ["Yes", "No"], "answer": 0, "explanation": "Everything seems legitimate. Don't keep them waiting!"},
+    {"character": character_images[26], "fake_ID": "683893", "real_ID": "683893", "ID": character_id_images[3], "picture": character_profile_pics[3], "choices": ["Yes", "No"], "answer": 0, "explanation": "Everything seems legitimate. Don't keep them waiting!"},
+    {"character": character_images[26], "fake_ID": "683893", "real_ID": "683893", "ID": character_id_images[3], "picture": character_profile_pics[3], "choices": ["Yes", "No"], "answer": 0, "explanation": "Everything seems legitimate. Don't keep them waiting!"},
+    {"character": character_images[26], "fake_ID": "683893", "real_ID": "683893", "ID": character_id_images[3], "picture": character_profile_pics[3], "choices": ["Yes", "No"], "answer": 0, "explanation": "Everything seems legitimate. Don't keep them waiting!"},
+    # fake purple
+    {"character": character_images[21], "fake_ID": "683893", "real_ID": "683893", "ID": character_id_images[3], "picture": character_profile_pics[3], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID photo. Something seems off..."},
+    {"character": character_images[22], "fake_ID": "683893", "real_ID": "683893", "ID": character_id_images[3], "picture": character_profile_pics[3], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID photo. Something seems off..."},
+    {"character": character_images[23], "fake_ID": "683893", "real_ID": "683893", "ID": character_id_images[3], "picture": character_profile_pics[3], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID photo. Something seems off..."},
+    {"character": character_images[24], "fake_ID": "683893", "real_ID": "683893", "ID": character_id_images[3], "picture": character_profile_pics[3], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID photo. Something seems off..."},
+    {"character": character_images[25], "fake_ID": "683893", "real_ID": "683893", "ID": character_id_images[3], "picture": character_profile_pics[3], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID photo. Something seems off..."},
+    {"character": character_images[27], "fake_ID": "683893", "real_ID": "693893", "ID": character_id_images[3], "picture": character_profile_pics[3], "choices": ["Yes", "No"], "answer": 1, "explanation": "I don't think they are who they claim to be..."},
+
+    # real teal
+    {"character": character_images[33], "fake_ID": "090470", "real_ID": "090470", "ID": character_id_images[4], "picture": character_profile_pics[4], "choices": ["Yes", "No"], "answer": 0, "explanation": "Everything seems legitimate. Don't keep them waiting!"},
+    {"character": character_images[33], "fake_ID": "090470", "real_ID": "090470", "ID": character_id_images[4], "picture": character_profile_pics[4], "choices": ["Yes", "No"], "answer": 0, "explanation": "Everything seems legitimate. Don't keep them waiting!"},
+    {"character": character_images[33], "fake_ID": "090470", "real_ID": "090470", "ID": character_id_images[4], "picture": character_profile_pics[4], "choices": ["Yes", "No"], "answer": 0, "explanation": "Everything seems legitimate. Don't keep them waiting!"},
+    {"character": character_images[33], "fake_ID": "090470", "real_ID": "090470", "ID": character_id_images[4], "picture": character_profile_pics[4], "choices": ["Yes", "No"], "answer": 0, "explanation": "Everything seems legitimate. Don't keep them waiting!"},
+    # fake teal
+    {"character": character_images[28], "fake_ID": "090470", "real_ID": "090470", "ID": character_id_images[4], "picture": character_profile_pics[4], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID. Something seems off..."},
+    {"character": character_images[29], "fake_ID": "090470", "real_ID": "090470", "ID": character_id_images[4], "picture": character_profile_pics[4], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID. Something seems off..."},
+    {"character": character_images[30], "fake_ID": "090470", "real_ID": "090470", "ID": character_id_images[4], "picture": character_profile_pics[4], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID. Something seems off..."},
+    {"character": character_images[31], "fake_ID": "090470", "real_ID": "090470", "ID": character_id_images[4], "picture": character_profile_pics[4], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID. Something seems off..."},
+    {"character": character_images[32], "fake_ID": "090470", "real_ID": "090470", "ID": character_id_images[4], "picture": character_profile_pics[4], "choices": ["Yes", "No"], "answer": 1, "explanation": "Take another look at their ID. Something seems off..."},
+    {"character": character_images[34], "fake_ID": "090470", "real_ID": "090407", "ID": character_id_images[4], "picture": character_profile_pics[4], "choices": ["Yes", "No"], "answer": 1, "explanation": "I don't think they are who they claim to be..."},
+
+
 ]
 current_question = random.randint(0, len(character_information) - 1)
 selected_answer = -1
@@ -177,11 +234,12 @@ while running:
 
     if rounds_played >= max_rounds:
         if score < 7:
+            pygame.draw.rect(screen, WHITE, (300, 400, 600, 200))  # White background box
             results_surface2 = FONT_TEKO_MEDIUM.render("You might need to think about your life choices",False,'Black').convert_alpha()
             results_rect2 = results_surface2.get_rect(center = (WIDTH // 2, HEIGHT // 2))
             screen.blit(results_surface2,results_rect2)
 
-            results_surface1 = FONT_TEKO_MEDIUM.render("You've successfully processed all incoming packages", False, 'Black').convert_alpha()
+            results_surface1 = FONT_TEKO_MEDIUM.render("You've processed all incoming packages", False, 'Black').convert_alpha()
             results_rect1 = results_surface1.get_rect(center=(WIDTH // 2, results_rect2.centery - 50))
             screen.blit(results_surface1, results_rect1)
 
@@ -191,12 +249,12 @@ while running:
 
             back_button.update(screen)
         else:
-                
+            pygame.draw.rect(screen, WHITE, (300, 400, 600, 200))  # White background box    
             results_surface2 = FONT_TEKO_MEDIUM.render("Great job keeping the museum safe!",False,'Black').convert_alpha()
             results_rect2 = results_surface2.get_rect(center = (WIDTH // 2, HEIGHT // 2))
             screen.blit(results_surface2,results_rect2)
 
-            results_surface1 = FONT_TEKO_MEDIUM.render("You've successfully processed all incoming packages", False, 'Black').convert_alpha()
+            results_surface1 = FONT_TEKO_MEDIUM.render("You've processed all incoming packages", False, 'Black').convert_alpha()
             results_rect1 = results_surface1.get_rect(center=(WIDTH // 2, results_rect2.centery - 50))
             screen.blit(results_surface1, results_rect1)
 
