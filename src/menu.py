@@ -1,8 +1,33 @@
-import pygame, sys
-from button import Button
-from settings import WIDTH, HEIGHT, WHITE, FONT_TEKO_BOLD, FONT_TEKO_LIGHT, FONT_TEKO_MEDIUM, FONT_TEKO_REGULAR, FONT_TEKO_SEMIBOLD
-from game import game_menu
-from settings import WIDTH, HEIGHT, BLUE, BLACK, WHITE, GREEN, RED
+"""
+Author: Jennifer Tenholder
+Course: CS/PUBP/ECE-6727 - Cyber Security Practicum
+Institution: Georgia Institute of Technology
+Date: 2025-04-04
+
+Project Name: The Gameification of Cybersecurity Awareness
+"""
+
+"""
+This code defines the main menu of the game. The user can select 'play' or close the game
+"""
+
+'''
+Import statement(s)
+'''
+
+import pygame # Game development library
+import sys # Used for exiting the game
+
+from game import game_menu # Imports the game menu function
+from button import Button # Handles UI button interations
+
+from settings import WIDTH, HEIGHT # Screen dimensions
+from settings import BLUE, BLACK, WHITE, GREEN, RED # Color constants
+from settings import FONT_TEKO_BOLD, FONT_TEKO_LIGHT, FONT_TEKO_MEDIUM, FONT_TEKO_REGULAR, FONT_TEKO_SEMIBOLD, FONT_TEKO_SEMIBOLD_SMALL, FONT_TEKO_BOLD_SMALL # Font constantsd
+
+
+
+
 
 pygame.init()
 

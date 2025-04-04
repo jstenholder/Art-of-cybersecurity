@@ -1,7 +1,35 @@
-import pygame, random, sys
-from settings import WIDTH, HEIGHT, BLUE, BLACK, WHITE, GREEN, RED
-from button import Button
-from settings import FONT_TEKO_BOLD, FONT_TEKO_LIGHT, FONT_TEKO_MEDIUM, FONT_TEKO_REGULAR, FONT_TEKO_SEMIBOLD, FONT_TEKO_SEMIBOLD_SMALL, FONT_TEKO_BOLD_SMALL
+"""
+Author: Jennifer Tenholder
+Course: CS/PUBP/ECE-6727 - Cyber Security Practicum
+Institution: Georgia Institute of Technology
+Date: 2025-04-04
+
+Project Name: The Gameification of Cybersecurity Awareness
+"""
+
+"""
+This code defines the Identity Verification minigame (referred to as 'Suspicious Shipments' in-game)
+More details on actual implementation and logic can be found below
+"""
+
+'''
+Import statement(s)
+'''
+
+import pygame # Game development library
+import random # Used for selecting items/questions
+import sys # Used for exiting the game
+
+from button import Button # Handles UI button interations
+
+from settings import WIDTH, HEIGHT # Screen dimensions
+from settings import BLUE, BLACK, WHITE, GREEN, RED # Color constants
+from settings import FONT_TEKO_BOLD, FONT_TEKO_LIGHT, FONT_TEKO_MEDIUM, FONT_TEKO_REGULAR, FONT_TEKO_SEMIBOLD, FONT_TEKO_SEMIBOLD_SMALL, FONT_TEKO_BOLD_SMALL # Font constantsd
+
+
+
+
+
 
 # Initialize pygame
 pygame.init()

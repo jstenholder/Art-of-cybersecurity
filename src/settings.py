@@ -1,6 +1,21 @@
-# For constants and configurations
+"""
+Author: Jennifer Tenholder
+Course: CS/PUBP/ECE-6727 - Cyber Security Practicum
+Institution: Georgia Institute of Technology
+Date: 2025-04-04
 
-import pygame
+Project Name: The Gameification of Cybersecurity Awareness
+"""
+
+"""
+This code defines constants that will be used throughout the game
+"""
+
+'''
+Import statement(s)
+'''
+
+import pygame # Game development library
 
 # Screen settings
 WIDTH, HEIGHT = 1200, 1000
