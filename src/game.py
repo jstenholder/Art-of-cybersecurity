@@ -29,7 +29,7 @@ from settings import FONT_TEKO_BOLD, FONT_TEKO_LIGHT, FONT_TEKO_MEDIUM, FONT_TEK
 pygame.init() # Initializes pygame modules - Required for use
 
 '''Game window definition'''
-background_image = pygame.image.load("assets/game_background_again.png")
+background_image = pygame.image.load("assets/background_main_and_game_menu.png")
 
 '''Game menu definition'''
 def game_menu(screen):
@@ -50,7 +50,7 @@ def game_menu(screen):
         '''
         pygame.draw.rect(screen, WHITE, (235, 310, 330, 275))
 
-        painting_classification_surface = pygame.image.load('assets/painting_classification_icon_again.png').convert_alpha()
+        painting_classification_surface = pygame.image.load('assets/icon_painting_classification.png').convert_alpha()
         painting_classification_rect = painting_classification_surface.get_rect(center = (WIDTH / 2 - 200, HEIGHT / 6 + 300))
         screen.blit(painting_classification_surface,painting_classification_rect)
 
@@ -70,7 +70,7 @@ def game_menu(screen):
         '''
         pygame.draw.rect(screen, WHITE, (635, 310, 330, 275))
 
-        identity_verification_surface = pygame.image.load('assets/identity_verification_icon.png').convert_alpha()
+        identity_verification_surface = pygame.image.load('assets/icon_identity_verification').convert_alpha()
         identity_verification_rect = identity_verification_surface.get_rect(center = (WIDTH / 2 + 200, HEIGHT / 6 + 300))
         screen.blit(identity_verification_surface,identity_verification_rect)
 
@@ -89,7 +89,7 @@ def game_menu(screen):
         '''
         pygame.draw.rect(screen, WHITE, (235, 610, 330, 275)) 
 
-        key_change_surface = pygame.image.load('assets/key_change_icon.png').convert_alpha()
+        key_change_surface = pygame.image.load('assets/icon_key_change').convert_alpha()
         key_change_rect = key_change_surface.get_rect(center = (painting_classification_bottomcenter_x,  painting_classification_bottomcenter_y + 200))
         screen.blit(key_change_surface,key_change_rect)
 
@@ -107,7 +107,7 @@ def game_menu(screen):
         '''
         pygame.draw.rect(screen, WHITE, (635, 610, 330, 275))
 
-        seek_and_find_surface = pygame.image.load('assets/seek_and_find_icon.png').convert_alpha()
+        seek_and_find_surface = pygame.image.load('assets/icon_seek_and_find.png').convert_alpha()
         seek_and_find_rect = seek_and_find_surface.get_rect(center = (identity_verification_bottomcenter_x,  identity_verification_bottomcenter_y + 200))
         screen.blit(seek_and_find_surface,seek_and_find_rect)
 

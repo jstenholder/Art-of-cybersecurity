@@ -28,7 +28,7 @@ pygame.init() # Initializes pygame modules - Required for use
 '''Game window definition'''
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Suspicious Shipments")
-background_image = pygame.image.load("assets/identity_verification_background_new.png")
+background_image = pygame.image.load("assets/background_identity_verification.png")
 
 '''
 Load characters
@@ -96,11 +96,11 @@ Loading profile pictures
 These images serve as the "ID photos" on the IDs used in the game
 '''
 character_profile_pics = [
-    pygame.image.load("assets/blue_profile_pic_again.png"),
-    pygame.image.load("assets/green_profile_pic_again.png"),
-    pygame.image.load("assets/pink_profile_pic_again.png"),
-    pygame.image.load("assets/purple_profile_pic_again.png"),
-    pygame.image.load("assets/teal_profile_pic_again.png")
+    pygame.image.load("assets/id_photo_blue.png"),
+    pygame.image.load("assets/id_photo_green.png"),
+    pygame.image.load("assets/id_photo_pink.png"),
+    pygame.image.load("assets/id_photo_purple.png"),
+    pygame.image.load("assets/id_photo_teal.png")
 ]
 
 '''

@@ -25,7 +25,7 @@ from settings import FONT_TEKO_BOLD, FONT_TEKO_LIGHT, FONT_TEKO_MEDIUM, FONT_TEK
 pygame.init() # Initializes pygame modules - Required for use
 
 '''Game window definition'''
-background_image = pygame.image.load("assets/game_background_again.png") 
+background_image = pygame.image.load("assets/background_main_and_game_menu.png") 
 
 '''Main menu definition'''
 def main_menu(screen):
@@ -36,9 +36,9 @@ def main_menu(screen):
         MENU_MOUSE_POS = pygame.mouse.get_pos()
 
         '''Defines buttons to play and quit the game'''
-        PLAY_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(WIDTH // 2, 550), 
+        PLAY_BUTTON = Button(image=pygame.image.load("assets/button_background.png"), pos=(WIDTH // 2, 550), 
                             text_input="PLAY", font=FONT_TEKO_SEMIBOLD, base_color=WHITE, hovering_color=BLUE)
-        QUIT_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(WIDTH // 2, 700), 
+        QUIT_BUTTON = Button(image=pygame.image.load("assets/button_background.png"), pos=(WIDTH // 2, 700), 
                              text_input="QUIT", font=FONT_TEKO_SEMIBOLD, base_color=WHITE, hovering_color=BLUE)
 
         for button in [PLAY_BUTTON, QUIT_BUTTON]:

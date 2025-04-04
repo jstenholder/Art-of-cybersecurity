@@ -28,7 +28,7 @@ pygame.init() # Initializes pygame modules - Required for use
 '''Game window definition'''
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Confidential Collection")
-background_image = pygame.image.load("assets/painting_classification_background_new.png")
+background_image = pygame.image.load("assets/background_painting_classification.png")
 
 '''
 Loading paintings
@@ -307,7 +307,7 @@ def painting_classification(screen):
             screen.blit(question_surface,question_rect)
 
             '''Display decision matrix'''
-            decision_matrix = pygame.image.load("assets/Adobe Express - file (5).png")
+            decision_matrix = pygame.image.load("assets/decision_matrix.png")
             decision_matrix_rect = decision_matrix.get_rect(center=(1000, 775))
             screen.blit(decision_matrix, decision_matrix_rect)
 

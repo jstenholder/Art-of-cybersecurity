@@ -27,7 +27,7 @@ pygame.init() # Initializes pygame modules - Required for use
 '''Game window definition'''
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Museum Mayhem")
-background_image = pygame.image.load("assets/seek_and_find.png")
+background_image = pygame.image.load("assets/background_seek_and_find.png")
 background_image = pygame.transform.scale(background_image, (WIDTH, HEIGHT))
 
 '''
