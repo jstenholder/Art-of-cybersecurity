@@ -89,7 +89,7 @@ def game_menu(screen):
         '''
         pygame.draw.rect(screen, WHITE, (235, 610, 330, 275)) 
 
-        key_change_surface = pygame.image.load('assets/icon_key_change').convert_alpha()
+        key_change_surface = pygame.image.load('assets/icon_key_change.png').convert_alpha()
         key_change_rect = key_change_surface.get_rect(center = (painting_classification_bottomcenter_x,  painting_classification_bottomcenter_y + 200))
         screen.blit(key_change_surface,key_change_rect)
 
