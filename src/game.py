@@ -11,10 +11,7 @@ Project Name: The Gameification of Cybersecurity Awareness
 This code defines the game menu . The user can select one of the four minigames to play
 """
 
-'''
-Import statement(s)
-'''
-
+'''Import statement(s)'''
 import pygame # Game development library
 import sys # Used for exiting the game
 

@@ -11,24 +11,21 @@ Project Name: The Gameification of Cybersecurity Awareness
 This code defines constants that will be used throughout the game
 """
 
-'''
-Import statement(s)
-'''
-
+'''Import statement(s)'''
 import pygame # Game development library
 
-# Screen settings
+'''Defines the screen dimensions'''
 WIDTH, HEIGHT = 1200, 1000
 
-# Colors
+'''Defines colors'''
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 BLUE = (100, 149, 237)
 GREEN = (50, 205, 50)
 RED = (220, 20, 60)
 
-# Fonts
-pygame.init()
+'''Defines fonts'''
+pygame.init() # Not sure why, but needs to be initialized here specifically
 FONT = pygame.font.Font("fonts/font.ttf", 36)
 FONT_TEKO_BOLD = pygame.font.Font("fonts/Teko-Bold.ttf", 100)
 FONT_TEKO_BOLD_SMALL = pygame.font.Font("fonts/Teko-Bold.ttf", 40)

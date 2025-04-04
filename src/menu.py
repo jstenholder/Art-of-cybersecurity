@@ -11,10 +11,7 @@ Project Name: The Gameification of Cybersecurity Awareness
 This code defines the main menu of the game. The user can select 'play' or close the game
 """
 
-'''
-Import statement(s)
-'''
-
+'''Import statement(s)'''
 import pygame # Game development library
 import sys # Used for exiting the game
 

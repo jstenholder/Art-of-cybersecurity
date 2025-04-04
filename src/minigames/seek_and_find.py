@@ -12,10 +12,7 @@ This code defines the Seek and Find minigame (referred to as 'Museum Mayhem' in-
 More details on actual implementation and logic can be found below
 """
 
-'''
-Import statement(s)
-'''
-
+'''Import statement(s)'''
 import pygame # Game development library
 import sys # Used for exiting the game
 

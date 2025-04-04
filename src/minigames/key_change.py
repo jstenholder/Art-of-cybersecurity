@@ -12,10 +12,7 @@ This code defines the Key Change minigame (referred to as 'The Key to Security' 
 More details on actual implementation and logic can be found below
 """
 
-'''
-Import statement(s)
-'''
-
+'''Import statement(s)'''
 import pygame # Game development library
 import random # Used for selecting items/questions
 import sys # Used for exiting the game

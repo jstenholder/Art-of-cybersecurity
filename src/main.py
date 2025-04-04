@@ -12,23 +12,15 @@ This code defines main
 If you wanted to run the whole code, run this file
 """
 
-'''
-Import statement(s)
-'''
-
+'''Import statement(s)'''
 import pygame # Game development library
-
 from menu import main_menu # Imports the main menu function
-
 from settings import WIDTH, HEIGHT # Screen dimensions
 
-
-
-
-
-
+'''Game window specifications'''
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Art of Cybersecurity")
 
+'''Calls the next file (menu.py)'''
 main_menu(screen)
 
