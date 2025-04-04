@@ -31,8 +31,7 @@ pygame.display.set_caption("Confidential Collection")
 background_image = pygame.image.load("assets/painting_classification_background_new.png")
 
 '''
-Loading in-game images
-
+Loading paintings
 These images serve as the "paintings" that are displayed to the user in-game
 '''
 painting_images = [
@@ -171,8 +170,6 @@ def show_instructions():
 
     while True:
         '''Display the instructions on a white box outlined in black'''
-        screen.fill(WHITE)
-
         pygame.draw.rect(screen, WHITE, (200, 200, 800, 600))
         pygame.draw.rect(screen, BLACK, (200, 200, 800, 600), 3)
 
@@ -203,13 +200,12 @@ def check_answer_click(pos):
 
     for i, rect in clickable_areas.items():
         if rect.collidepoint(pos):  # Check if click is inside the rectangle
-            selected_answer = i # Inputs the users choice
+            selected_answer = i # Users choice
             show_result = True
             show_next_button = True
             rounds_played += 1  
 
-            # Check if the clicked answer is correct
-            if selected_answer == painting_information[current_question]["answer"]:
+            if selected_answer == painting_information[current_question]["answer"]: # Check if the clicked answer is correct
                 score += 1
 
 '''
@@ -234,6 +230,7 @@ Sole purpose of this is to hold the game loop and make it callable by other plac
 def painting_classification(screen):
 
     global current_question, selected_answer, show_result, show_next_button, score, max_rounds, rounds_played
+    screen.blit(background_image, (0, 0))
     reset_painting_classification() # Resets to game to its initial state
     show_instructions() # Shows the user the instruction page
 
