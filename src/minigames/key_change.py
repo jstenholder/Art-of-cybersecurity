@@ -28,7 +28,13 @@ pygame.init() # Initializes pygame modules - Required for use
 '''Game window definition'''
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("The Key to Security")
-background_images = [ # uses multiple background images throughout the game
+
+'''
+Load background images
+
+There are multiple background images used throughout the game to make it seem like the user is going around and changing the keys for different exhibits
+'''
+background_images = [
     pygame.image.load("assets/diamond_and_asteroid.png"),
     pygame.image.load("assets/asteroid_and_shell_fossil.png"),
     pygame.image.load("assets/shell_fossil_and_sword.png"),
@@ -37,9 +43,11 @@ background_images = [ # uses multiple background images throughout the game
     pygame.image.load("assets/vase_and_fish_fossil.png")
 ]
 
+'''
+Load keys
 
-
-# Load images
+These images serve as the "keys" that the user is presented in-game
+'''
 key_images = [
     pygame.image.load("assets/key1.png"),
     pygame.image.load("assets/key2.png"),
@@ -62,6 +70,13 @@ key_images = [
     pygame.image.load("assets/key19.png"),
     pygame.image.load("assets/key20.png")
 ]
+
+'''
+Loading prompt information
+
+Each key is loaded into a dictionary as well as if its secure or not
+This information is used in the game loop to generate game content
+'''
 
 key_information = [
     {"image": key_images[0], "choices": ["Secure", "Insecure"], "answer": 1, "explanation": "I'm not so sure about this one. I doesn't look complex enough"},
@@ -87,65 +102,48 @@ key_information = [
 ]
 
 
-# Game state
-global KEY_CHANGE_MOUSE_POS
-KEY_CHANGE_MOUSE_POS = pygame.mouse.get_pos()
-global rounds_played
+'''
+Declare global variables and buttons
+
+rounds_played - Tracks how many rounds have been played
+max_rounds - How many rounds the user is subjected to
+score - Tracks score
+selected_answer - Stores what the user selects
+show_result - Shows the answer (Only after the user makes a choice)
+show_next_button - Allows the user to move on to the next round (Only after they make a choice)
+message - Shows the explanation (Only after the user makes a choice)
+key_positions - Stores the location where the user clicks
+
+KEY_CHANGE_MOUSE_POS - Tracks mouse position
+back_button - Defines the details of the back button
+next_button - Defines the details of the next button
+'''
+global rounds_played, max_rounds, score, selected_answer, show_result, show_next_button, message, current_keys, key_positions
 rounds_played = 0
 max_rounds = 10
-global score
 score = 0
 selected_answer = -1
-global show_result
 show_result = False
-global show_next_button
 show_next_button = False
-global message
 message = ""
-global current_keys
-global key_positions
 key_positions = []
 
-global back_button
+global KEY_CHANGE_MOUSE_POS
+KEY_CHANGE_MOUSE_POS = pygame.mouse.get_pos()
+
+global back_button, next_button
 back_button = Button(image=None, pos=(WIDTH - 150, HEIGHT - 75), text_input="BACK", font=FONT_TEKO_SEMIBOLD_SMALL, base_color="Green", hovering_color="Red")
 back_button.changeColor(KEY_CHANGE_MOUSE_POS)
 
-def select_new_keys():
-    global current_keys
-    current_keys = random.sample(key_information, 4)
-    # Ensure at least one key is secure
-    if not any(k["answer"] == 0 for k in current_keys):  
-        secure_key = random.choice([k for k in key_information if k["answer"] == 0])
-        current_keys[random.randint(0, 3)] = secure_key
+next_button = Button(image=None, pos=(WIDTH - 150, HEIGHT - 75), text_input="NEXT", font=FONT_TEKO_BOLD_SMALL, base_color=BLACK, hovering_color=BLUE)
+next_button.changeColor(KEY_CHANGE_MOUSE_POS)
 
-# Initial selection
-select_new_keys()
+'''
+Displays and instructions page
 
-# Function to check if a key is clicked
-
-
-def check_key_click(pos):
-    global selected_answer, show_result, show_next_button, rounds_played, message, score, key_positions  # Used to access the global variables
-
-    for key_rect, key in key_positions:
-        if key_rect.collidepoint(pos): 
-            selected_answer = key["answer"]
-            show_result = True
-            show_next_button = True
-
-            if selected_answer == 0:
-                message = key["explanation"]
-                score += 1
-                
-            else:
-                message = key["explanation"]
-                rounds_played += 1 
-
-            rounds_played += 1     
-
-# Initialize game state
-game_state = "instructions"  # Start with the instructions screen
-
+Explains the rules of the game and how to play
+User can close out of it by clicking anywhere or hitting any key
+'''
 def show_instructions():
     """Display instructions and wait for user input to proceed."""
     instruction_text = [
@@ -184,8 +182,49 @@ def show_instructions():
                 sys.exit()
             elif event.type == pygame.KEYDOWN or event.type == pygame.MOUSEBUTTONDOWN:
                 return  # Exit function when a key or mouse click is detected
+            
+'''
+Key selection
 
+Selects four key options to be shown to the user
+Guarantees that at least one of the four will be secure
+'''
+def select_new_keys():
+    global current_keys
+    current_keys = random.sample(key_information, 4)
 
+    if not any(k["answer"] == 0 for k in current_keys):  
+        secure_key = random.choice([k for k in key_information if k["answer"] == 0]) # Ensure at least one key is secure
+        current_keys[random.randint(0, 3)] = secure_key
+
+'''
+Determines if the users selection is correct
+
+First, inputs the users selection and then compares it against the answer
+'''
+def check_key_click(pos):
+    global selected_answer, show_result, show_next_button, rounds_played, message, score, key_positions  # Used to access the global variables
+
+    for key_rect, key in key_positions:
+        if key_rect.collidepoint(pos): 
+            selected_answer = key["answer"]
+            show_result = True
+            show_next_button = True
+
+            if selected_answer == 0:
+                message = key["explanation"]
+                score += 1
+                rounds_played += 1 
+                
+            else:
+                message = key["explanation"]
+                rounds_played += 1     
+
+'''
+Resets the game values to the beginning
+
+Prior to this, if the user selected the game again, they would been shown the final landing page
+'''
 def reset_key_change():
     global current_question, selected_answer, show_result, show_next_button, score, rounds_played, key_positions
     current_question = random.randint(0, len(key_information) - 1)
@@ -194,13 +233,19 @@ def reset_key_change():
     show_next_button = False
     score = 0  # Reset score
     rounds_played = 0  # Reset round counter
-            
-def key_change(screen):
-    global current_question, selected_answer, show_result, show_next_button, score, max_rounds, rounds_played, key_positions
-    reset_key_change()
 
-    # Show instructions before starting the game loop
-    show_instructions()       
+'''
+Main function
+
+Sole purpose of this is to hold the game loop and make it callable by other places in the code
+'''              
+def key_change(screen):
+    
+    global current_question, selected_answer, show_result, show_next_button, score, max_rounds, rounds_played, key_positions
+    screen.blit(background_images[0], (0, 0))
+    reset_key_change() # Resets game to its initial state
+    select_new_keys() # Selects new keys   
+    show_instructions() # Shows the user the instruction page       
 
     '''Game loop'''
     running = True
@@ -209,13 +254,14 @@ def key_change(screen):
         KEY_CHANGE_MOUSE_POS = pygame.mouse.get_pos()
         key_positions.clear()
         
-        # CHANGED: Choose background image based on rounds played (changes every 2 rounds)
+        '''Choose background image based on rounds played (changes every 2 rounds)'''
         background_index = (rounds_played // 2) % len(background_images)
         screen.blit(background_images[background_index], (0, 0))
 
+        '''If the rounds played is equal to the max number of rounds, display the final landing page. If not, continue with the game'''
         if rounds_played >= max_rounds:
-
-            if score < 5:
+            '''Displays the final landing pages with the users score'''
+            if score < 5: # If the user got a perfect score, show them this message
                 pygame.draw.rect(screen, WHITE, (250, 400, 700, 200))
                 results_surface2 = FONT_TEKO_MEDIUM.render("Definitely not as secure as we typically want to be...",False,'Black').convert_alpha()
                 results_rect2 = results_surface2.get_rect(center = (WIDTH // 2, HEIGHT // 2))
@@ -229,9 +275,9 @@ def key_change(screen):
                 results_rect3 = results_surface3.get_rect(center=(WIDTH // 2, results_rect2.centery + 50))
                 screen.blit(results_surface3, results_rect3)
 
-                back_button.update(screen)
+                back_button.update(screen) # Shows the back button
 
-            else:
+            else: # If the user did not get a perfect score, show them this message  
                 pygame.draw.rect(screen, WHITE, (250, 400, 700, 200))
                 results_surface2 = FONT_TEKO_MEDIUM.render("Great job keeping the museum safe!",False,'Black').convert_alpha()
                 results_rect2 = results_surface2.get_rect(center = (WIDTH // 2, HEIGHT // 2))
@@ -245,27 +291,30 @@ def key_change(screen):
                 results_rect3 = results_surface3.get_rect(center=(WIDTH // 2, results_rect2.centery + 50))
                 screen.blit(results_surface3, results_rect3)
                 
-                back_button.update(screen)
+                back_button.update(screen) # Shows the back button
 
         else:
-            score_surface = FONT_TEKO_REGULAR.render(f"Score: {score}",False,'Black').convert_alpha()
-            score_rect = score_surface.get_rect(center = (50, 50))
-            screen.blit(score_surface,score_rect)
+
             
+            '''Display the user prompt'''
             prompt_surface = FONT_TEKO_MEDIUM.render("Select a secure key for these two exhibits",False,'Black').convert_alpha()
             prompt_rect = prompt_surface.get_rect(center = (WIDTH // 2, 100))
             screen.blit(prompt_surface,prompt_rect)
 
-
+            '''Display the key options'''
             positions = [(200, 800), (450, 800), (700, 800), (950, 800)]
 
             for i, key in enumerate(current_keys):
                 key_rect = key["image"].get_rect(center=positions[i])
                 screen.blit(key["image"], key_rect)
                 key_positions.append((key_rect, key))
+            
+            '''Display the score in the top left corner'''
+            score_surface = FONT_TEKO_REGULAR.render(f"Score: {score}",False,'Black').convert_alpha()
+            score_rect = score_surface.get_rect(center = (50, 50))
+            screen.blit(score_surface,score_rect)
 
             if show_result:
-
                 if selected_answer == 0:
                     correct_surface = FONT_TEKO_SEMIBOLD_SMALL.render(message,False,'Green').convert_alpha()
                     correct_rect = correct_surface.get_rect(center = (WIDTH // 2, HEIGHT - 100))
@@ -286,18 +335,14 @@ def key_change(screen):
             if event.type == pygame.QUIT: # If the user clicks the x button in the top right, close the game and exit
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                if show_next_button and rounds_played < max_rounds:
+                if show_next_button and rounds_played < max_rounds: # If show next button is true (True when the user selects an answer) and all rounds have not been played
                     rounds_played += 1
                     show_result = False
                     show_next_button = False
-                    select_new_keys()
-
+                    select_new_keys() # Select new question from character_information and do another round
                 if back_button.checkForInput(KEY_CHANGE_MOUSE_POS):
                     from game import game_menu
                     game_menu(screen)
 
                 else:
-                    check_key_click(event.pos)
-
-    pygame.quit()
-    sys.exit()
+                    check_key_click(event.pos) # Check to see if an answer has been selected

@@ -324,8 +324,7 @@ def painting_classification(screen):
         '''Defines what happens with the user interacts with the UI'''
         for event in pygame.event.get():
             if event.type == pygame.QUIT: # If the user clicks the x button in the top right, close the game and exit
-                pygame.quit()
-                sys.exit()
+                running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if show_next_button and rounds_played < max_rounds: # If show next button is true (True when the user selects an answer) and all rounds have not been played
                     current_question = random.randint(0, len(painting_information) - 1) # Select new question from painting_information and do another round

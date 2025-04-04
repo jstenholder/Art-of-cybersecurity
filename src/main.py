@@ -12,7 +12,9 @@ This code defines main
 If you wanted to run the whole code, run this file
 """
 
-'''Import statement(s)'''
+'''
+Import statement(s)
+'''
 import pygame # Game development library
 from menu import main_menu # Imports the main menu function
 from settings import WIDTH, HEIGHT # Screen dimensions

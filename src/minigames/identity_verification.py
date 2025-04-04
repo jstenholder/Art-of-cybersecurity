@@ -31,7 +31,7 @@ pygame.display.set_caption("Suspicious Shipments")
 background_image = pygame.image.load("assets/identity_verification_background_new.png")
 
 '''
-Loading characters
+Load characters
 
 These images serve as the "characters" that are displayed to the user in-game
 '''
@@ -193,10 +193,10 @@ selected_answer - Stores what the user selects
 show_result - Shows the answer (Only after the user makes a choice)
 show_next_button - Allows the user to move on to the next round (Only after they make a choice)
 score - Tracks score
-max_rounds - How many rounds the user is ubjected to
+max_rounds - How many rounds the user is subjected to
 rounds_played - Tracks how many rounds have been played
 
-PAINTING_CLASSIFICATION_MOUSE_POS - Tracks mouse position
+IDENTITY_VERIFICATION_MOUSE_POS - Tracks mouse position
 back_button - Defines the details of the back button
 next_button - Defines the details of the next button
 '''
@@ -226,7 +226,6 @@ Explains the rules of the game and how to play
 User can close out of it by clicking anywhere or hitting any key
 '''
 def show_instructions():
-    print("2")
     instruction_text = [
         "Welcome to Identity Verification Minigame!",
         "Instructions:",
@@ -306,6 +305,7 @@ def identity_verification(screen):
     '''Game loop'''
     running = True
     while running:
+
         IDENTITY_VERIFICATION_MOUSE_POS = pygame.mouse.get_pos()
 
         screen.blit(background_image, (0, 0))  # Displays the background image defined previously 
@@ -328,6 +328,7 @@ def identity_verification(screen):
                 screen.blit(results_surface3, results_rect3)
 
                 back_button.update(screen) # Shows the back button
+                
             else: # If the user did not get a perfect score, show them this message  
                 pygame.draw.rect(screen, WHITE, (300, 400, 600, 200))
                 results_surface2 = FONT_TEKO_MEDIUM.render("Great job keeping the museum safe!",False,'Black').convert_alpha()
