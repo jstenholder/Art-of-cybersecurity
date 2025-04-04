@@ -21,8 +21,11 @@ font = pygame.font.Font(None, 36)
 
 # Define items to find (name, correct click area as (x, y, width, height))
 items = [
-    ("phone", (215, 790, 78, 54)),
-    ("ID", (117, 268, 87, 57)),
+    ("phone", (215, 840, 76, 54)), # done
+    ("ID", (113, 332, 88, 42)), # done
+    ("mouse", (855, 573, 65, 37)), # done
+    ("lucky purple paper clip", (751, 805, 27, 43)), # done
+    ("sticky note with a deadline", (938, 288, 83, 88)),
 ]
 
 current_item = 0
@@ -30,7 +33,10 @@ items_found = 0
 
 # Define hidden items with special messages
 hidden_items = [
-    ("computer", (424, 226, 424, 75), "Oh my gosh. I can't believe I left my computer unlocked. How un-safe of me! Good catch!"),
+    ("computer", (422, 276, 426, 76), "I can't believe I left my computer unlocked. How un-safe of me! Thanks for letting me know"), # done
+    ("document", (263, 352, 161, 198), "If my boss knew I left that document out, they'd have my job. Thanks for letting me know"), # done
+    ("password", (467, 523, 86, 88), "I completely forgot to shred that. Thanks for letting me know"), # done
+    ("flash_drive", (1110, 452, 70, 51), "I don't recognize this. I think I need to report this to IT. Thanks for letting me know"), # done
 ]
 hidden_message = ""
 
@@ -98,6 +104,7 @@ while running:
 
         if event.type == pygame.MOUSEBUTTONDOWN:
             mouse_x, mouse_y = pygame.mouse.get_pos()
+            print(f"Clicked at: ({mouse_x}, {mouse_y})")
 
             # Check if back button is clicked
             if items_found == len(items) and back_button.checkForInput((mouse_x, mouse_y)):
