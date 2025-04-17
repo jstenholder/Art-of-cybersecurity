@@ -16,6 +16,7 @@ More details on actual implementation and logic can be found below
 import pygame # Game development library
 import random # Used for selecting items/questions
 import sys # Used for exiting the game
+import os # Used for getting the resource path
 
 from button import Button # Handles UI button interations
 
@@ -23,48 +24,57 @@ from settings import WIDTH, HEIGHT # Screen dimensions
 from settings import BLUE, BLACK, WHITE, GREEN, RED # Color constants
 from settings import FONT_TEKO_BOLD, FONT_TEKO_LIGHT, FONT_TEKO_MEDIUM, FONT_TEKO_REGULAR, FONT_TEKO_SEMIBOLD, FONT_TEKO_SEMIBOLD_SMALL, FONT_TEKO_BOLD_SMALL # Font constants
 
+'''Get resource path'''
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS  # PyInstaller's temp dir
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
 pygame.init() # Initializes pygame modules - Required for use
 
 '''Game window definition'''
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Confidential Collection")
-background_image = pygame.image.load("assets/background_painting_classification.png")
+background_image = pygame.image.load(resource_path("assets/background_painting_classification.png"))
 
 '''
 Loading paintings
 These images serve as the "paintings" that are displayed to the user in-game
 '''
 painting_images = [
-    pygame.image.load("assets/painting_1.png"),
-    pygame.image.load("assets/painting_2.png"),
-    pygame.image.load("assets/painting_3.png"),
-    pygame.image.load("assets/painting_4.png"),
-    pygame.image.load("assets/painting_5.png"),
-    pygame.image.load("assets/painting_6.png"),
-    pygame.image.load("assets/painting_7.png"),
-    pygame.image.load("assets/painting_8.png"),
-    pygame.image.load("assets/painting_9.png"),
-    pygame.image.load("assets/painting_10.png"),
-    pygame.image.load("assets/painting_11.png"),
-    pygame.image.load("assets/painting_12.png"),
-    pygame.image.load("assets/painting_13.png"),
-    pygame.image.load("assets/painting_14.png"),
-    pygame.image.load("assets/painting_15.png"),
-    pygame.image.load("assets/painting_16.png"),
-    pygame.image.load("assets/painting_17.png"),
-    pygame.image.load("assets/painting_18.png"),
-    pygame.image.load("assets/painting_19.png"),
-    pygame.image.load("assets/painting_20.png"),
-    pygame.image.load("assets/painting_21.png"),
-    pygame.image.load("assets/painting_22.png"),
-    pygame.image.load("assets/painting_23.png"),
-    pygame.image.load("assets/painting_24.png"),
-    pygame.image.load("assets/painting_25.jpg"),
-    pygame.image.load("assets/painting_26.png"),
-    pygame.image.load("assets/painting_27.png"),
-    pygame.image.load("assets/painting_28.png"),
-    pygame.image.load("assets/painting_29.png"),
-    pygame.image.load("assets/painting_30.png")
+    pygame.image.load(resource_path("assets/painting_1.png")),
+    pygame.image.load(resource_path("assets/painting_2.png")),
+    pygame.image.load(resource_path("assets/painting_3.png")),
+    pygame.image.load(resource_path("assets/painting_4.png")),
+    pygame.image.load(resource_path("assets/painting_5.png")),
+    pygame.image.load(resource_path("assets/painting_6.png")),
+    pygame.image.load(resource_path("assets/painting_7.png")),
+    pygame.image.load(resource_path("assets/painting_8.png")),
+    pygame.image.load(resource_path("assets/painting_9.png")),
+    pygame.image.load(resource_path("assets/painting_10.png")),
+    pygame.image.load(resource_path("assets/painting_11.png")),
+    pygame.image.load(resource_path("assets/painting_12.png")),
+    pygame.image.load(resource_path("assets/painting_13.png")),
+    pygame.image.load(resource_path("assets/painting_14.png")),
+    pygame.image.load(resource_path("assets/painting_15.png")),
+    pygame.image.load(resource_path("assets/painting_16.png")),
+    pygame.image.load(resource_path("assets/painting_17.png")),
+    pygame.image.load(resource_path("assets/painting_18.png")),
+    pygame.image.load(resource_path("assets/painting_19.png")),
+    pygame.image.load(resource_path("assets/painting_20.png")),
+    pygame.image.load(resource_path("assets/painting_21.png")),
+    pygame.image.load(resource_path("assets/painting_22.png")),
+    pygame.image.load(resource_path("assets/painting_23.png")),
+    pygame.image.load(resource_path("assets/painting_24.png")),
+    pygame.image.load(resource_path("assets/painting_25.jpg")),
+    pygame.image.load(resource_path("assets/painting_26.png")),
+    pygame.image.load(resource_path("assets/painting_27.png")),
+    pygame.image.load(resource_path("assets/painting_28.png")),
+    pygame.image.load(resource_path("assets/painting_29.png")),
+    pygame.image.load(resource_path("assets/painting_30.png"))
 ]
 
 '''
@@ -307,7 +317,7 @@ def painting_classification(screen):
             screen.blit(question_surface,question_rect)
 
             '''Display decision matrix'''
-            decision_matrix = pygame.image.load("assets/decision_matrix.png")
+            decision_matrix = pygame.image.load(resource_path("assets/decision_matrix.png"))
             decision_matrix_rect = decision_matrix.get_rect(center=(1000, 775))
             screen.blit(decision_matrix, decision_matrix_rect)
 

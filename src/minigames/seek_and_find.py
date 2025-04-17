@@ -15,6 +15,7 @@ More details on actual implementation and logic can be found below
 '''Import statement(s)'''
 import pygame # Game development library
 import sys # Used for exiting the game
+import os # Used for getting the resource path
 
 from button import Button # Handles UI button interations
 
@@ -22,12 +23,21 @@ from settings import WIDTH, HEIGHT # Screen dimensions
 from settings import BLUE, BLACK, WHITE, GREEN, RED # Color constants
 from settings import FONT_TEKO_BOLD, FONT_TEKO_LIGHT, FONT_TEKO_MEDIUM, FONT_TEKO_REGULAR, FONT_TEKO_SEMIBOLD, FONT_TEKO_SEMIBOLD_SMALL, FONT_TEKO_BOLD_SMALL # Font constants
 
+'''Get resource path'''
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS  # PyInstaller's temp dir
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
 pygame.init() # Initializes pygame modules - Required for use
 
 '''Game window definition'''
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Museum Mayhem")
-background_image = pygame.image.load("assets/background_seek_and_find.png")
+background_image = pygame.image.load(resource_path("assets/background_seek_and_find.png"))
 background_image = pygame.transform.scale(background_image, (WIDTH, HEIGHT))
 
 '''

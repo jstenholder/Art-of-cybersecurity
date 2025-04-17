@@ -16,6 +16,7 @@ More details on actual implementation and logic can be found below
 import pygame # Game development library
 import random # Used for selecting items/questions
 import sys # Used for exiting the game
+import os # Used for getting the resource path
 
 from button import Button # Handles UI button interations
 
@@ -23,12 +24,21 @@ from settings import WIDTH, HEIGHT # Screen dimensions
 from settings import BLUE, BLACK, WHITE, GREEN, RED # Color constants
 from settings import FONT_TEKO_BOLD, FONT_TEKO_LIGHT, FONT_TEKO_MEDIUM, FONT_TEKO_REGULAR, FONT_TEKO_SEMIBOLD, FONT_TEKO_SEMIBOLD_SMALL, FONT_TEKO_BOLD_SMALL # Font constants
 
+'''Get resource path'''
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS  # PyInstaller's temp dir
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
 pygame.init() # Initializes pygame modules - Required for use
 
 '''Game window definition'''
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Suspicious Shipments")
-background_image = pygame.image.load("assets/background_identity_verification.png")
+background_image = pygame.image.load(resource_path("assets/background_identity_verification.png"))
 
 '''
 Load characters
@@ -36,45 +46,45 @@ Load characters
 These images serve as the "characters" that are displayed to the user in-game
 '''
 character_images = [
-    pygame.image.load("assets/blue_imposter_1.png").convert_alpha(), #0
-    pygame.image.load("assets/blue_imposter_2.png").convert_alpha(), #1
-    pygame.image.load("assets/blue_imposter_3.png").convert_alpha(), #2
-    pygame.image.load("assets/blue_imposter_4.png").convert_alpha(), #3
-    pygame.image.load("assets/blue_imposter_5.png").convert_alpha(), #4
-    pygame.image.load("assets/blue_real.png").convert_alpha(), #5
-    pygame.image.load("assets/blue_wrong_id.png").convert_alpha(), #6
+    pygame.image.load(resource_path("assets/blue_imposter_1.png")).convert_alpha(), #0
+    pygame.image.load(resource_path("assets/blue_imposter_2.png")).convert_alpha(), #1
+    pygame.image.load(resource_path("assets/blue_imposter_3.png")).convert_alpha(), #2
+    pygame.image.load(resource_path("assets/blue_imposter_4.png")).convert_alpha(), #3
+    pygame.image.load(resource_path("assets/blue_imposter_5.png")).convert_alpha(), #4
+    pygame.image.load(resource_path("assets/blue_real.png")).convert_alpha(), #5
+    pygame.image.load(resource_path("assets/blue_wrong_id.png")).convert_alpha(), #6
 
-    pygame.image.load("assets/green_imposter_1.png").convert_alpha(), #7
-    pygame.image.load("assets/green_imposter_2.png").convert_alpha(), #8
-    pygame.image.load("assets/green_imposter_3.png").convert_alpha(), #9
-    pygame.image.load("assets/green_imposter_4.png").convert_alpha(), #10
-    pygame.image.load("assets/green_imposter_5.png").convert_alpha(), #11
-    pygame.image.load("assets/green_real.png").convert_alpha(), #12
-    pygame.image.load("assets/green_wrong_id.png").convert_alpha(), #13
+    pygame.image.load(resource_path("assets/green_imposter_1.png")).convert_alpha(), #7
+    pygame.image.load(resource_path("assets/green_imposter_2.png")).convert_alpha(), #8
+    pygame.image.load(resource_path("assets/green_imposter_3.png")).convert_alpha(), #9
+    pygame.image.load(resource_path("assets/green_imposter_4.png")).convert_alpha(), #10
+    pygame.image.load(resource_path("assets/green_imposter_5.png")).convert_alpha(), #11
+    pygame.image.load(resource_path("assets/green_real.png")).convert_alpha(), #12
+    pygame.image.load(resource_path("assets/green_wrong_id.png")).convert_alpha(), #13
 
-    pygame.image.load("assets/pink_imposter_1.png").convert_alpha(), #14
-    pygame.image.load("assets/pink_imposter_2.png").convert_alpha(), #15
-    pygame.image.load("assets/pink_imposter_3.png").convert_alpha(), #16
-    pygame.image.load("assets/pink_imposter_4.png").convert_alpha(), #17
-    pygame.image.load("assets/pink_imposter_5.png").convert_alpha(), #18
-    pygame.image.load("assets/pink_real.png").convert_alpha(), #19
-    pygame.image.load("assets/pink_wrong_id.png").convert_alpha(), #20
+    pygame.image.load(resource_path("assets/pink_imposter_1.png")).convert_alpha(), #14
+    pygame.image.load(resource_path("assets/pink_imposter_2.png")).convert_alpha(), #15
+    pygame.image.load(resource_path("assets/pink_imposter_3.png")).convert_alpha(), #16
+    pygame.image.load(resource_path("assets/pink_imposter_4.png")).convert_alpha(), #17
+    pygame.image.load(resource_path("assets/pink_imposter_5.png")).convert_alpha(), #18
+    pygame.image.load(resource_path("assets/pink_real.png")).convert_alpha(), #19
+    pygame.image.load(resource_path("assets/pink_wrong_id.png")).convert_alpha(), #20
 
-    pygame.image.load("assets/purple_imposter_1.png").convert_alpha(), #21
-    pygame.image.load("assets/purple_imposter_2.png").convert_alpha(), #22
-    pygame.image.load("assets/purple_imposter_3.png").convert_alpha(), #23
-    pygame.image.load("assets/purple_imposter_4.png").convert_alpha(), #24
-    pygame.image.load("assets/purple_imposter_5.png").convert_alpha(), #25
-    pygame.image.load("assets/purple_real.png").convert_alpha(), #26
-    pygame.image.load("assets/purple_wrong_id.png").convert_alpha(), #27
+    pygame.image.load(resource_path("assets/purple_imposter_1.png")).convert_alpha(), #21
+    pygame.image.load(resource_path("assets/purple_imposter_2.png")).convert_alpha(), #22
+    pygame.image.load(resource_path("assets/purple_imposter_3.png")).convert_alpha(), #23
+    pygame.image.load(resource_path("assets/purple_imposter_4.png")).convert_alpha(), #24
+    pygame.image.load(resource_path("assets/purple_imposter_5.png")).convert_alpha(), #25
+    pygame.image.load(resource_path("assets/purple_real.png")).convert_alpha(), #26
+    pygame.image.load(resource_path("assets/purple_wrong_id.png")).convert_alpha(), #27
 
-    pygame.image.load("assets/teal_imposter_1.png").convert_alpha(), #28
-    pygame.image.load("assets/teal_imposter_2.png").convert_alpha(), #29
-    pygame.image.load("assets/teal_imposter_3.png").convert_alpha(), #30
-    pygame.image.load("assets/teal_imposter_4.png").convert_alpha(), #31
-    pygame.image.load("assets/teal_imposter_5.png").convert_alpha(), #32
-    pygame.image.load("assets/teal_real.png").convert_alpha(), #33
-    pygame.image.load("assets/teal_wrong_id.png").convert_alpha() #34
+    pygame.image.load(resource_path("assets/teal_imposter_1.png")).convert_alpha(), #28
+    pygame.image.load(resource_path("assets/teal_imposter_2.png")).convert_alpha(), #29
+    pygame.image.load(resource_path("assets/teal_imposter_3.png")).convert_alpha(), #30
+    pygame.image.load(resource_path("assets/teal_imposter_4.png")).convert_alpha(), #31
+    pygame.image.load(resource_path("assets/teal_imposter_5.png")).convert_alpha(), #32
+    pygame.image.load(resource_path("assets/teal_real.png")).convert_alpha(), #33
+    pygame.image.load(resource_path("assets/teal_wrong_id.png")).convert_alpha() #34
 ]
 
 '''
@@ -83,11 +93,11 @@ Loading IDs
 These images serve as the bases of the IDs used in the game
 '''
 character_id_images = [
-    pygame.image.load("assets/blue_id.png"),
-    pygame.image.load("assets/green_id.png"),
-    pygame.image.load("assets/pink_id.png"),
-    pygame.image.load("assets/purple_id.png"),
-    pygame.image.load("assets/teal_id.png")
+    pygame.image.load(resource_path("assets/blue_id.png")),
+    pygame.image.load(resource_path("assets/green_id.png")),
+    pygame.image.load(resource_path("assets/pink_id.png")),
+    pygame.image.load(resource_path("assets/purple_id.png")),
+    pygame.image.load(resource_path("assets/teal_id.png"))
 ]
 
 '''
@@ -96,11 +106,11 @@ Loading profile pictures
 These images serve as the "ID photos" on the IDs used in the game
 '''
 character_profile_pics = [
-    pygame.image.load("assets/id_photo_blue.png"),
-    pygame.image.load("assets/id_photo_green.png"),
-    pygame.image.load("assets/id_photo_pink.png"),
-    pygame.image.load("assets/id_photo_purple.png"),
-    pygame.image.load("assets/id_photo_teal.png")
+    pygame.image.load(resource_path("assets/id_photo_blue.png")),
+    pygame.image.load(resource_path("assets/id_photo_green.png")),
+    pygame.image.load(resource_path("assets/id_photo_pink.png")),
+    pygame.image.load(resource_path("assets/id_photo_purple.png")),
+    pygame.image.load(resource_path("assets/id_photo_teal.png"))
 ]
 
 '''

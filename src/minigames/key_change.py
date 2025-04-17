@@ -16,12 +16,22 @@ More details on actual implementation and logic can be found below
 import pygame # Game development library
 import random # Used for selecting items/questions
 import sys # Used for exiting the game
+import os # Used for getting the resource path
 
 from button import Button # Handles UI button interations
 
 from settings import WIDTH, HEIGHT # Screen dimensions
 from settings import BLUE, BLACK, WHITE, GREEN, RED # Color constants
 from settings import FONT_TEKO_BOLD, FONT_TEKO_LIGHT, FONT_TEKO_MEDIUM, FONT_TEKO_REGULAR, FONT_TEKO_SEMIBOLD, FONT_TEKO_SEMIBOLD_SMALL, FONT_TEKO_BOLD_SMALL # Font constants
+
+'''Get resource path'''
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS  # PyInstaller's temp dir
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 pygame.init() # Initializes pygame modules - Required for use
 
@@ -35,12 +45,12 @@ Load background images
 There are multiple background images used throughout the game to make it seem like the user is going around and changing the keys for different exhibits
 '''
 background_images = [
-    pygame.image.load("assets/diamond_and_asteroid.png"),
-    pygame.image.load("assets/asteroid_and_shell_fossil.png"),
-    pygame.image.load("assets/shell_fossil_and_sword.png"),
-    pygame.image.load("assets/diamond_and_map.png"),
-    pygame.image.load("assets/map_and_vase.png"),
-    pygame.image.load("assets/vase_and_fish_fossil.png")
+    pygame.image.load(resource_path("assets/diamond_and_asteroid.png")),
+    pygame.image.load(resource_path("assets/asteroid_and_shell_fossil.png")),
+    pygame.image.load(resource_path("assets/shell_fossil_and_sword.png")),
+    pygame.image.load(resource_path("assets/diamond_and_map.png")),
+    pygame.image.load(resource_path("assets/map_and_vase.png")),
+    pygame.image.load(resource_path("assets/vase_and_fish_fossil.png"))
 ]
 
 '''
@@ -49,26 +59,26 @@ Load keys
 These images serve as the "keys" that the user is presented in-game
 '''
 key_images = [
-    pygame.image.load("assets/key1.png"),
-    pygame.image.load("assets/key2.png"),
-    pygame.image.load("assets/key3.png"),
-    pygame.image.load("assets/key4.png"),
-    pygame.image.load("assets/key5.png"),
-    pygame.image.load("assets/key6.png"),
-    pygame.image.load("assets/key7.png"),
-    pygame.image.load("assets/key8.png"),
-    pygame.image.load("assets/key9.png"),
-    pygame.image.load("assets/key10.png"),
-    pygame.image.load("assets/key11.png"),
-    pygame.image.load("assets/key12.png"),
-    pygame.image.load("assets/key13.png"),
-    pygame.image.load("assets/key14.png"),
-    pygame.image.load("assets/key15.png"),
-    pygame.image.load("assets/key16.png"),
-    pygame.image.load("assets/key17.png"),
-    pygame.image.load("assets/key18.png"),
-    pygame.image.load("assets/key19.png"),
-    pygame.image.load("assets/key20.png")
+    pygame.image.load(resource_path("assets/key1.png")),
+    pygame.image.load(resource_path("assets/key2.png")),
+    pygame.image.load(resource_path("assets/key3.png")),
+    pygame.image.load(resource_path("assets/key4.png")),
+    pygame.image.load(resource_path("assets/key5.png")),
+    pygame.image.load(resource_path("assets/key6.png")),
+    pygame.image.load(resource_path("assets/key7.png")),
+    pygame.image.load(resource_path("assets/key8.png")),
+    pygame.image.load(resource_path("assets/key9.png")),
+    pygame.image.load(resource_path("assets/key10.png")),
+    pygame.image.load(resource_path("assets/key11.png")),
+    pygame.image.load(resource_path("assets/key12.png")),
+    pygame.image.load(resource_path("assets/key13.png")),
+    pygame.image.load(resource_path("assets/key14.png")),
+    pygame.image.load(resource_path("assets/key15.png")),
+    pygame.image.load(resource_path("assets/key16.png")),
+    pygame.image.load(resource_path("assets/key17.png")),
+    pygame.image.load(resource_path("assets/key18.png")),
+    pygame.image.load(resource_path("assets/key19.png")),
+    pygame.image.load(resource_path("assets/key20.png"))
 ]
 
 '''
@@ -206,7 +216,7 @@ Determines if the users selection is correct
 
 First, inputs the users selection and then compares it against the answer
 '''
-def check_key_click(pos):
+def check_answer_click(pos):
     global selected_answer, show_result, show_next_button, rounds_played, message, score, key_positions  # Used to access the global variables
 
     for key_rect, key in key_positions:
@@ -349,4 +359,4 @@ def key_change(screen):
                     game_menu(screen)
 
                 else:
-                    check_key_click(event.pos) # Check to see if an answer has been selected
+                    check_answer_click(event.pos) # Check to see if an answer has been selected

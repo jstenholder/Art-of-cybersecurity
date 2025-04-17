@@ -14,6 +14,7 @@ This code defines the game menu . The user can select one of the four minigames 
 '''Import statement(s)'''
 import pygame # Game development library
 import sys # Used for exiting the game
+import os # Used for getting the resource path
 
 from button import Button # Handles UI button interations]
 
@@ -26,10 +27,19 @@ from settings import WIDTH, HEIGHT # Screen dimensions
 from settings import BLUE, BLACK, WHITE, GREEN, RED # Color constants
 from settings import FONT_TEKO_BOLD, FONT_TEKO_LIGHT, FONT_TEKO_MEDIUM, FONT_TEKO_REGULAR, FONT_TEKO_SEMIBOLD, FONT_TEKO_SEMIBOLD_SMALL, FONT_TEKO_BOLD_SMALL # Font constants
 
+'''Get resource path'''
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS  # PyInstaller's temp dir
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
 pygame.init() # Initializes pygame modules - Required for use
 
 '''Game window definition'''
-background_image = pygame.image.load("assets/background_main_and_game_menu.png")
+background_image = pygame.image.load(resource_path("assets/background_main_and_game_menu.png"))
 
 '''Game menu definition'''
 def game_menu(screen):
@@ -50,7 +60,7 @@ def game_menu(screen):
         '''
         pygame.draw.rect(screen, WHITE, (235, 310, 330, 275))
 
-        painting_classification_surface = pygame.image.load('assets/icon_painting_classification.png').convert_alpha()
+        painting_classification_surface = pygame.image.load(resource_path('assets/icon_painting_classification.png')).convert_alpha()
         painting_classification_rect = painting_classification_surface.get_rect(center = (WIDTH / 2 - 200, HEIGHT / 6 + 300))
         screen.blit(painting_classification_surface,painting_classification_rect)
 
@@ -70,7 +80,7 @@ def game_menu(screen):
         '''
         pygame.draw.rect(screen, WHITE, (635, 310, 330, 275))
 
-        identity_verification_surface = pygame.image.load('assets/icon_identity_verification.png').convert_alpha()
+        identity_verification_surface = pygame.image.load(resource_path('assets/icon_identity_verification.png')).convert_alpha()
         identity_verification_rect = identity_verification_surface.get_rect(center = (WIDTH / 2 + 200, HEIGHT / 6 + 300))
         screen.blit(identity_verification_surface,identity_verification_rect)
 
@@ -89,7 +99,7 @@ def game_menu(screen):
         '''
         pygame.draw.rect(screen, WHITE, (235, 610, 330, 275)) 
 
-        key_change_surface = pygame.image.load('assets/icon_key_change.png').convert_alpha()
+        key_change_surface = pygame.image.load(resource_path('assets/icon_key_change.png')).convert_alpha()
         key_change_rect = key_change_surface.get_rect(center = (painting_classification_bottomcenter_x,  painting_classification_bottomcenter_y + 200))
         screen.blit(key_change_surface,key_change_rect)
 
@@ -107,7 +117,7 @@ def game_menu(screen):
         '''
         pygame.draw.rect(screen, WHITE, (635, 610, 330, 275))
 
-        seek_and_find_surface = pygame.image.load('assets/icon_seek_and_find.png').convert_alpha()
+        seek_and_find_surface = pygame.image.load(resource_path('assets/icon_seek_and_find.png')).convert_alpha()
         seek_and_find_rect = seek_and_find_surface.get_rect(center = (identity_verification_bottomcenter_x,  identity_verification_bottomcenter_y + 200))
         screen.blit(seek_and_find_surface,seek_and_find_rect)
 

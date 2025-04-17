@@ -14,6 +14,7 @@ This code defines the main menu of the game. The user can select 'play' or close
 '''Import statement(s)'''
 import pygame # Game development library
 import sys # Used for exiting the game
+import os # Used for getting the resource path
 
 from game import game_menu # Imports the game menu function
 from button import Button # Handles UI button interations
@@ -22,10 +23,19 @@ from settings import WIDTH, HEIGHT # Screen dimensions
 from settings import BLUE, BLACK, WHITE, GREEN, RED # Color constants
 from settings import FONT_TEKO_BOLD, FONT_TEKO_LIGHT, FONT_TEKO_MEDIUM, FONT_TEKO_REGULAR, FONT_TEKO_SEMIBOLD, FONT_TEKO_SEMIBOLD_SMALL, FONT_TEKO_BOLD_SMALL # Font constants
 
+'''Get resource path'''
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS  # PyInstaller's temp dir
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
 pygame.init() # Initializes pygame modules - Required for use
 
 '''Game window definition'''
-background_image = pygame.image.load("assets/background_main_and_game_menu.png") 
+background_image = pygame.image.load(resource_path("assets/background_main_and_game_menu.png")) 
 
 '''Main menu definition'''
 def main_menu(screen):
@@ -36,11 +46,31 @@ def main_menu(screen):
         MENU_MOUSE_POS = pygame.mouse.get_pos()
 
         '''Defines buttons to play and quit the game'''
-        PLAY_BUTTON = Button(image=pygame.image.load("assets/button_background.png"), pos=(WIDTH // 2, 550), 
-                            text_input="PLAY", font=FONT_TEKO_SEMIBOLD, base_color=WHITE, hovering_color=BLUE)
-        QUIT_BUTTON = Button(image=pygame.image.load("assets/button_background.png"), pos=(WIDTH // 2, 700), 
-                             text_input="QUIT", font=FONT_TEKO_SEMIBOLD, base_color=WHITE, hovering_color=BLUE)
 
+        button_image = pygame.image.load(resource_path("assets/button_background.png"))
+        
+        play_button_pos = (WIDTH // 2, 550)
+        PLAY_BUTTON = Button(image=button_image,
+                     pos=play_button_pos,
+                     text_input="PLAY",
+                     font=FONT_TEKO_SEMIBOLD,
+                     base_color=WHITE,
+                     hovering_color=BLUE)
+        
+        quit_button_pos = (WIDTH // 2, 700)
+        QUIT_BUTTON = Button(image=button_image,
+                     pos=quit_button_pos,
+                     text_input="QUIT",
+                     font=FONT_TEKO_SEMIBOLD,
+                     base_color=WHITE,
+                     hovering_color=BLUE)
+
+        
+        '''PLAY_BUTTON = Button(image=pygame.image.load(resource_path("assets/button_background.png"), pos=(WIDTH // 2, 550)), 
+                            text_input="PLAY", font=FONT_TEKO_SEMIBOLD, base_color=WHITE, hovering_color=BLUE)
+        QUIT_BUTTON = Button(image=pygame.image.load(resource_path("assets/button_background.png"), pos=(WIDTH // 2, 700)), 
+                             text_input="QUIT", font=FONT_TEKO_SEMIBOLD, base_color=WHITE, hovering_color=BLUE)
+'''
         for button in [PLAY_BUTTON, QUIT_BUTTON]:
             button.changeColor(MENU_MOUSE_POS)
             button.update(screen)
